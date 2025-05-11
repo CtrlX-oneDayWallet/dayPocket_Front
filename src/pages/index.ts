@@ -1,1 +1,1 @@
-// pages
+export { default as Main } from "./main/Main";

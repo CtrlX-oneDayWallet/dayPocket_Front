@@ -2,7 +2,7 @@ export const theme = {
   primary: {
     pu1: "#7079F6",
     pu2: "#E7E9FD",
-    bl1: "70C3F6",
+    bl1: "#70C3F6",
   },
   gray: {
     white: "#FFFFFF",
