@@ -5,7 +5,6 @@ export const AppContainer = styled.div`
 `;
 
 export const Header = styled.header`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
