@@ -4,6 +4,7 @@ import App from "./App";
 import "./index.css";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,3 +16,5 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();
