@@ -1,4 +1,4 @@
-import { ReactComponent as BackIcon } from "@/assets/icons/back.svg";
+import { ReactComponent as BackIcon } from "@/assets/icons/arrow-back.svg";
 import * as S from "./TopNav.styles";
 import { useNavigate } from "react-router-dom";
 
