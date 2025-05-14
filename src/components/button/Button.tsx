@@ -7,7 +7,7 @@ export default function Button({ label, onClick, disabled }: ButtonProps) {
     onClick?.(e);
   };
   return (
-    <S.ButtonContainer onClick={() => handleClick} disabled={disabled}>
+    <S.ButtonContainer onClick={(e) => handleClick(e)} disabled={disabled}>
       <S.ButtonText>{label}</S.ButtonText>
     </S.ButtonContainer>
   );

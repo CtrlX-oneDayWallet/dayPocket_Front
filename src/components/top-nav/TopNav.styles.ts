@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const TopNavContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 352px;
   height: 30px;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 18px;
-  padding-top: 18px;
+  margin-left: 18px;
+  margin-top: 18px;
 `;

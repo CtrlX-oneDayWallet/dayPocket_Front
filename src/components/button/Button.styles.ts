@@ -2,23 +2,24 @@ import styled from "styled-components";
 
 export const ButtonContainer = styled.button<{ disabled?: boolean }>`
   display: flex;
-  width: 555px;
-  height: 98px;
-  padding: 33px 216px 34px 227px;
-  justify-content: flex-end;
+  width: 300px;
+  height: 53px;
+  justify-content: center;
   align-items: center;
   flex-shrink: 0;
   border-radius: 12px;
+  border: none;
   background-color: ${(props) =>
     props.disabled ? props.theme.gray.gy3 : props.theme.primary.pu1};
+  cursor: pointer;
 `;
 
 export const ButtonText = styled.p`
   color: ${(props) => props.theme.gray.white};
   text-align: center;
-  font-size: 24px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  letter-spacing: -1.2px;
+  letter-spacing: -0.7px;
 `;
