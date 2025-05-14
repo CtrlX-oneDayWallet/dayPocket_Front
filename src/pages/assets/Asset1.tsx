@@ -8,7 +8,11 @@ export default function SetPage() {
   return (
     <S.SetPageContainer>
       <TopNav />
-      <Set lable="확인" amount={amount} setAmount={setAmount} />
+      <Set
+        lable="목표 금액을 설정해주세요"
+        amount={amount}
+        setAmount={setAmount}
+      />
     </S.SetPageContainer>
   );
 }
