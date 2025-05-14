@@ -14,7 +14,7 @@ export default function TopNav() {
         width={24}
         height={30}
         style={{ cursor: "pointer" }}
-        onClick={() => handleBackClick}
+        onClick={() => handleBackClick()}
       />
     </S.TopNavContainer>
   );

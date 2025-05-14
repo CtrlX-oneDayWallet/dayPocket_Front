@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as CancelIcon } from "@/assets/icons/arrow.svg";
 import { FormatNumber } from "@/utils";
 
-export default function Set() {
+export default function Set({ lable }: { lable?: string }) {
   const navigate = useNavigate();
   const [amount, setAmount] = useState("0");
 
@@ -28,7 +28,7 @@ export default function Set() {
 
   return (
     <S.SetContainer>
-      <S.SetTitle>목표 금액을 설정해주세요</S.SetTitle>
+      <S.SetTitle>{lable}</S.SetTitle>
       <S.InputBox>
         <S.InputDisplay>{FormatNumber(amount)}</S.InputDisplay>
         <S.Won>원</S.Won>
