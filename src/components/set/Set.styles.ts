@@ -98,7 +98,7 @@ export const Number = styled.button`
   height: 100%;
   cursor: pointer;
 
-  &.active {
-    color: ${({ theme }) => theme.gray.white};
+  &:hover {
+    background-color: ${({ theme }) => theme.gray.gy1};
   }
 `;
