@@ -35,7 +35,7 @@ export default function Set({ lable }: { lable?: string }) {
       </S.InputBox>
       <Button
         label="확인"
-        onClick={() => navigate("/asset/2")}
+        onClick={() => navigate("/asset")}
         disabled={amount === "0"}
       />
       <S.NumberContainer>
