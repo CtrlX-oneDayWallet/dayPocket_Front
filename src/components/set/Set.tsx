@@ -1,27 +1,24 @@
 import Button from "@/components/button/Button";
-import { useState } from "react";
 import * as S from "./Set.styles";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as CancelIcon } from "@/assets/icons/arrow.svg";
 import { FormatNumber } from "@/utils";
+import { SetProps } from "./Set.types";
 
-export default function Set({ lable }: { lable?: string }) {
+export default function Set({ lable, amount, setAmount }: SetProps) {
   const navigate = useNavigate();
-  const [amount, setAmount] = useState("0");
 
   const handleNumberClick = (value: string) => {
     if (amount === "0") {
       setAmount(value);
     } else {
-      setAmount((prev) => prev + value);
+      setAmount(amount + value);
     }
   };
 
   const handleCancel = () => {
-    setAmount((prev) => {
-      const next = prev.slice(0, -1);
-      return next.length === 0 ? "0" : next;
-    });
+    const next = amount.slice(0, -1);
+    setAmount(next.length === 0 ? "0" : next);
   };
 
   const numberPad = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "00", "0"];
