@@ -1,7 +1,19 @@
 import { Success } from "@/components";
 import * as S from "./DepositSuccess.styles";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function DepositSuccess() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/asset");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <S.DepositSuccessContainer>
       <Success
