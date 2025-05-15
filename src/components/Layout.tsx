@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const LayoutWrapper = styled.div`
   min-height: 100vh;
+  width: 100%;
   background: var(--background, linear-gradient(180deg, #cddffc 0%, #fff 100%));
   display: flex;
   flex-direction: column;
