@@ -4,6 +4,7 @@ export const FailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 247px;
 `;
 
 export const FailLabel = styled.p`
