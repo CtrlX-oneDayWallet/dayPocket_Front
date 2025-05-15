@@ -6,30 +6,30 @@ import { ReactComponent as AssetIcon } from "../../assets/icons/Asset.svg";
 import { ReactComponent as SettingsIcon } from "../../assets/icons/Setting.svg";
 import "./BottomNav.css";
 
-const BottomNav = () => {
-    const location = useLocation();
+interface BottomNavProps {
+    activeTab: string;
+    setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+}
 
+const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
     const tabs = [
-        { to: "/", icon: <HomeIcon /> },
-        { to: "/challenge", icon: <ChallengeIcon /> },
-        { to: "/asset", icon: <AssetIcon /> },
-        { to: "/settings", icon: <SettingsIcon /> },
+        { key: "home", icon: <HomeIcon /> },
+        { key: "challenge", icon: <ChallengeIcon /> },
+        { key: "asset", icon: <AssetIcon /> },
+        { key: "settings", icon: <SettingsIcon /> },
     ];
 
     return (
         <nav className="bottom-nav">
-        {tabs.map((tab) => {
-            const isActive = location.pathname === tab.to;
-            return (
-                <Link
-                    key={tab.to}
-                    to={tab.to}
-                    className={`tab ${isActive ? "active" : ""}`}
+            {tabs.map((tab) => (
+                <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`tab ${activeTab === tab.key ? "active" : ""}`}
                 >
                     <div className="icon">{tab.icon}</div>
-                </Link>
-                );
-            })}
+                </button>
+            ))}
         </nav>
     );
 };

@@ -27,7 +27,6 @@ const Layout = () => {
           <Outlet />
         </motion.div>
       </AnimatePresence>
-      <BottomNav />
     </LayoutWrapper>
   );
 };
