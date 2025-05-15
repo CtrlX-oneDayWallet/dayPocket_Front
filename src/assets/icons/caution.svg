@@ -1,13 +1,17 @@
 <svg width="224" height="224" viewBox="0 0 224 224" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="caution">
-<path id="Ellipse 397" d="M28.6201 104.658C24.4116 151.413 58.2336 192.667 104.164 196.801C150.094 200.935 190.739 166.384 194.948 119.629C199.156 72.874 165.334 31.62 119.404 27.4857C73.474 23.3515 32.8286 57.9026 28.6201 104.658Z" fill="url(#paint0_linear_262_101)"/>
-<g id="Group 320">
-<path id="Union" d="M160 96.378L107.329 149.048L94.1368 135.855L94.1418 135.849L64 105.707L77.1933 92.5136L107.335 122.656L146.807 83.1847L160 96.378Z" fill="#3B61AD"/>
-<path id="Union_2" d="M157.483 93.794L104.711 146.567L100.495 142.202L64 105.707L74.794 94.9129L104.632 124.751L146.689 83L157.483 93.794Z" fill="#EAF4FF"/>
+<g id="Group 317">
+<path id="Ellipse 397" d="M28.6201 104.658C24.4116 151.413 58.2336 192.667 104.164 196.801C150.094 200.935 190.739 166.384 194.948 119.629C199.156 72.874 165.334 31.62 119.404 27.4857C73.474 23.3515 32.8286 57.9026 28.6201 104.658Z" fill="url(#paint0_linear_263_135)"/>
+<g id="Group 1">
+<path id="Rectangle 14" d="M101 62H123V138H101V62Z" fill="#3B61AD"/>
+<path id="Rectangle 12" d="M101 62H119V130H101V62Z" fill="#EAF4FF"/>
+<path id="Rectangle 15" d="M101 143H123V162H101V143Z" fill="#3B61AD"/>
+<path id="Rectangle 13" d="M101 143H119V155H101V143Z" fill="#F8FBFF"/>
+</g>
 </g>
 </g>
 <defs>
-<linearGradient id="paint0_linear_262_101" x1="119.404" y1="27.4857" x2="118.5" y2="300.5" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_263_135" x1="119.404" y1="27.4857" x2="118.5" y2="300.5" gradientUnits="userSpaceOnUse">
 <stop stop-color="#C7E0FE"/>
 <stop offset="1" stop-color="#5587EC"/>
 </linearGradient>
