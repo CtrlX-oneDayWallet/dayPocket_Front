@@ -33,6 +33,7 @@ export default function Account1() {
   const navigate = useNavigate();
   const [selectOpen, setSelectOpen] = useState(false);
   const [bank, setBank] = useState("신한은행");
+  const [account, setAccount] = useState("");
   return (
     <S.Account1Container>
       <TopNav />
@@ -69,10 +70,14 @@ export default function Account1() {
           </S.DropdownWrapper>
         </S.SelectBox>
         <S.InputBox>
-          <S.InputLabel />
+          <S.InputLabel onChange={(e) => setAccount(e.target.value)} />
         </S.InputBox>
       </S.BoxWrap>
-      <Button label="다음" onClick={() => navigate("/asset/account/2")} />
+      <Button
+        label="다음"
+        onClick={() => navigate("/asset/account/2")}
+        disabled={account === ""}
+      />
     </S.Account1Container>
   );
 }
