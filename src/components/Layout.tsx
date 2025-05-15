@@ -5,7 +5,8 @@ import BottomNav from "../components/common/BottomNav";
 
 const LayoutWrapper = styled.div`
   min-height: 100vh;
-  background: linear-gradient(180deg, #CDDFFC 0%, #FFFFFF 100%);
+  width: 100%;
+  background: var(--background, linear-gradient(180deg, #cddffc 0%, #fff 100%));
   display: flex;
   flex-direction: column;
 `;

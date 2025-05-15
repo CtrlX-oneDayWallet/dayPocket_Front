@@ -1,1 +1,1 @@
-// utils
+export { FormatNumber } from "./FormatNumber";
