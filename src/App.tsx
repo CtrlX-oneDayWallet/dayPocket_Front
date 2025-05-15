@@ -1,6 +1,13 @@
 import { BrowserRouter, useLocation, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Main, Asset1 } from "./pages";
+import {
+  Main,
+  Asset1,
+  AccountFail,
+  AccountSuccess,
+  DepositFail,
+  DepositSuccess,
+} from "./pages";
 import { Layout } from "./components";
 
 function AnimatedRoutes() {
@@ -12,6 +19,10 @@ function AnimatedRoutes() {
         <Route element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/asset/1" element={<Asset1 />} />
+          <Route path="/asset/accountsuccess" element={<AccountSuccess />} />
+          <Route path="/asset/accountfail" element={<AccountFail />} />
+          <Route path="/asset/depositsuccess" element={<DepositSuccess />} />
+          <Route path="/asset/depositfail" element={<DepositFail />} />
         </Route>
       </Routes>
     </AnimatePresence>
