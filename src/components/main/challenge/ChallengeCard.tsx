@@ -15,7 +15,9 @@ const ChallengeCard = ({ icon, label, reward }: Props) => {
                 <S.IconWrapper>{icon}</S.IconWrapper>
                 <S.Label>{label}</S.Label>
             </S.Left>
-            <S.Reward>{reward}원</S.Reward>
+            <S.Right>
+                <S.Reward><span>{reward}</span><strong>원</strong></S.Reward>
+            </S.Right>
         </S.Card>
     );
 };

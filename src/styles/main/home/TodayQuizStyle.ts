@@ -1,37 +1,29 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-    margin-top: 24px;
-    padding: 16px 20px;
-    background: #7079F6;
-    border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px 20px;
+    background-color: #736ff1;
+    border-radius: 22px;
+    margin-bottom: 24px;
 `;
 
 export const Text = styled.div`
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     color: white;
+    font-family: 'Inter';
 `;
 
-export const ActionButton = styled.button`
-    background-color: #FFFFFF;
-    border: none;
+export const ActionButton = styled.div`
+    width: 48px;
+    height: 48px;
+    background-color: white;
     border-radius: 50%;
-    color: white;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-`;
-
-export const Arrow = styled.span`
-    font-size: 20px;
-    color: #7079F6;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 `;
