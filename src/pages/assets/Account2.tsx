@@ -3,6 +3,7 @@ import * as S from "./Account2.styles";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ReactComponent as EyeOffIcon } from "@/assets/icons/eye-off.svg";
+import { ReactComponent as EyeOpenIcon } from "@/assets/icons/eye-open.svg";
 
 export default function Account2() {
   const navigate = useNavigate();
@@ -35,12 +36,21 @@ export default function Account2() {
             }}
           />
         </S.InputBox>
-        <EyeOffIcon
-          width={16}
-          height={16}
-          onClick={() => setVisible(!visible)}
-          style={{ cursor: "pointer" }}
-        />
+        {visible ? (
+          <EyeOpenIcon
+            width={16}
+            height={16}
+            onClick={() => setVisible(!visible)}
+            style={{ cursor: "pointer" }}
+          />
+        ) : (
+          <EyeOffIcon
+            width={16}
+            height={16}
+            onClick={() => setVisible(!visible)}
+            style={{ cursor: "pointer" }}
+          />
+        )}
       </S.InputWrap>
       <Button
         label="확인"

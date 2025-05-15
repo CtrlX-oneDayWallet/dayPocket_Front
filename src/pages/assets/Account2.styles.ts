@@ -28,7 +28,7 @@ export const InputWrap = styled.div`
   width: 295px;
   height: 46px;
   align-items: center;
-  gap: 44px;
+  gap: 60px;
   border-radius: 10px;
   border: 1px solid #edf1f3;
   background-color: ${({ theme }) => theme.gray.white};
