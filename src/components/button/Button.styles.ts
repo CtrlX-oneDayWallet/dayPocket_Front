@@ -14,6 +14,12 @@ export const ButtonContainer = styled.button<{ disabled?: boolean }>`
   cursor: pointer;
 `;
 
+export const IconWrap = styled.div`
+  display: flex;
+  margin-bottom: 5px;
+  margin-right: -3px;
+`;
+
 export const ButtonText = styled.p`
   color: ${(props) => props.theme.gray.white};
   text-align: center;
