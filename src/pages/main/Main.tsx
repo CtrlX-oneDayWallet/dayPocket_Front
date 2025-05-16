@@ -1,17 +1,34 @@
-import * as S from "./Main.styles";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import HomePage from "./HomePage";
+import ChallengePage from "./ChallengePage";
+import AssetPage from "./AssetPage";
+import SettingsPage from "./SettingsPage";
+import BottomNav from "../../components/common/BottomNav";
 
-export default function Main() {
-  const navigate = useNavigate();
+const Main = () => {
+  const [activeTab, setActiveTab] = useState("home");
+
+  const renderPage = () => {
+    switch (activeTab) {
+      case "home":
+        return <HomePage />;
+      case "challenge":
+        return <ChallengePage />;
+      case "asset":
+        return <AssetPage />;
+      case "settings":
+        return <SettingsPage />;
+      default:
+        return <HomePage />;
+    }
+  };
+
   return (
-    <S.AppContainer>
-      <S.Header>Main Page</S.Header>
-      <S.Link
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      />
-      <button onClick={() => navigate("/asset/1")}>이동1</button>
-    </S.AppContainer>
+    <>
+      {renderPage()}
+      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
+    </>
   );
-}
+};
+
+export default Main;
