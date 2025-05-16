@@ -1,4 +1,4 @@
-import { BrowserRouter, useLocation, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import {
   Main,
@@ -36,3 +36,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
