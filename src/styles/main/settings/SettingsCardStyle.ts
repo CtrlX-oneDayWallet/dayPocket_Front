@@ -4,14 +4,14 @@ export const Card = styled.div`
     width: 326px;
     background-color: ${({ theme }) => theme.gray.gy1};
     border-radius: 22px;
-    padding: 20px 24px;
     display: flex;
+    padding: 20px 24px;
     justify-content: space-between;
     align-items: center;
-    min-height: 62px;
+    min-height: 66px;
     transition: background-color 0.3s;
 
-    @media screen and (max-width: 390px) {
+    @media screen and (max-width: 370px) {
         padding: 14px 16px;
     }
 `;
@@ -22,15 +22,9 @@ export const Left = styled.div`
     gap: 16px;
 `;
 
-export const Right = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: flex-end
-`;
-
 export const IconWrapper = styled.div`
-    width: 26px;
-    height: 26px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,31 +43,5 @@ export const Label = styled.div`
 
     @media screen and (max-width: 370px) {
         font-size: 13px;
-    }
-`;
-
-export const Reward = styled.div`
-    background-color: #CDCFF6;
-    width: 42px;
-    height: 18px;
-    color: ${({ theme }) => theme.primary.pu1};
-    font-family: 'Inter';
-    text-align: center;
-    white-space: nowrap;
-    line-height: 1;
-    justify-content: center;
-    font-weight: 600;
-    padding: 4px 4px;
-    border-radius: 4px;
-
-    & > strong {
-        margin-left: 1px;
-    }
-    & > span {
-        font-weight: 600;
-    }
-    
-    @media screen and (max-width: 370px) {
-        font-size: 11px;
     }
 `;

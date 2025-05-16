@@ -3,7 +3,7 @@ import HomePage from "./HomePage";
 import ChallengePage from "./ChallengePage";
 import AssetPage from "./AssetPage";
 import SettingsPage from "./SettingsPage";
-import BottomNav from "../../components/common/BottomNav";
+import BottomNav from "@/components/common/BottomNav";
 
 const Main = () => {
     const [activeTab, setActiveTab] = useState("home");
@@ -27,7 +27,7 @@ const Main = () => {
         <>
             {renderPage()}
             <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
-        </>
+    </>
     );
 };
 

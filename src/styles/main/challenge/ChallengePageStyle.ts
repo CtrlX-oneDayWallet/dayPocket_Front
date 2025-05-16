@@ -8,7 +8,7 @@ export const PageWrapper = styled.div`
   align-items: center;
   gap: 37px;
   
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 370px) {
     padding: 16px;
   }
 `;
@@ -23,7 +23,7 @@ export const Title = styled.h2`
   line-height: 1.5;
   margin-top: 40px;
 
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 370px) {
     font-size: 22px;
   }
 `;
@@ -36,7 +36,7 @@ export const CardBox = styled.div`
     margin-top: 8px;
     display: flex;
     flex-direction: column;
-    min-height: 360px;
+    min-height: 340px;
     gap: 22px;
 `;
 
@@ -48,7 +48,7 @@ export const CoinWrapper = styled.div`
       width: 179px;
       height: 187px;
 
-      @media screen and (max-width: 390px) {
+      @media screen and (max-width: 370px) {
         width: 179px;
         height: 187px;
       }
