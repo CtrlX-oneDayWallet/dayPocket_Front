@@ -4,7 +4,7 @@ export const CardContainer = styled.div`
     display: flex;
     gap: 14px;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.gray.white};
     justify-content: space-between;
     border-radius: 22px;
     padding: 20px;
@@ -26,7 +26,7 @@ export const Description = styled.p`
     font-family: 'Inter';
     font-weight: bold;
     font-size: 13px;
-    color: #6C7278;
+    color: ${({ theme }) => theme.gray.gy4};
     margin-bottom: 1px;
 `;
 
@@ -64,7 +64,7 @@ export const ValueText = styled.div<{ color: string }>`
 export const BarBackground = styled.div`
     width: 100%;
     height: 20px;
-    background-color: #F1F1F1;
+    background-color: ${({ theme }) => theme.gray.gy1};
     border-radius: 22px;
     overflow: hidden;
     margin-bottom: 12px;
@@ -93,7 +93,7 @@ export const CardPairSection = styled.div`
 export const CardWrapper = styled.div`
     display: flex;
     flex: 1;
-    background-color: #F1F1F1;
+    background-color: ${({ theme }) => theme.gray.gy1};
     justify-content: flex-start;
     align-items: center;
     border-radius: 22px;
@@ -165,7 +165,7 @@ export const BarText = styled.div`
     white-space: nowrap;
 
     span {
-        color: #2B2B2B;
+        color: ${({ theme }) => theme.gray.gy6};
         font-size: 10px;
         font-weight: 600;
     }
@@ -189,7 +189,7 @@ export const AvgBarText = styled.div`
     text-align: center;
     align-items: center;
     font-size: 12px;
-    color: #6C7278;
+    color: ${({ theme }) => theme.gray.gy4};
     white-space: nowrap;
     
     span {

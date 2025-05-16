@@ -16,7 +16,7 @@ export const PageWrapper = styled.div`
 export const Title = styled.h2`
   font-size: 22px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: ${({ theme }) => theme.gray.gy6};
   text-align: center;
   font-family: 'Inter';
   padding: 32px 20px 0;
@@ -30,11 +30,10 @@ export const Title = styled.h2`
 
 export const CardBox = styled.div`
     width: 100vw;
-    background-color: #ffffff;
+    background-color: ${({ theme }) => theme.gray.white};
     border-radius: 22px;
     padding: 20px;
     margin-top: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     min-height: 360px;

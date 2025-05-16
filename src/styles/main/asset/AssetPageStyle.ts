@@ -4,43 +4,46 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 24px;
     min-height: 100vh;
 
     @media screen and (max-width: 370px) {
-        padding: 16px;
-        gap: 20px;
+        padding: 18px;
+        gap: 22px;
     }
 `;
 
 export const CurrentAmount = styled.div`
-    font-size: 18px;
+    font-family: "Inter";
     font-weight: 700;
-    color: #000000;
-    margin-bottom: 20px;
-
-    strong {
-        display: block;
-        font-size: 28px;
-        margin-top: 4px;
-    }
+    color: ${({ theme }) => theme.gray.black};
+    line-height: 1.4;
+    font-size: 18px;
+    margin-top: 20px;
     
-    @media screen and (max-width: 370px) {
-        font-size: 14px;
-        
+    @media screen and (max-width: 370px) {        
         strong {
-            font-size: 24px;
+            display: block;
+            font-size: 28px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+        
+        span {
+            display: block;
+            font-size: 16px;
+            margin-top: 2px;
+            margin-bottom: 1px;
         }
     }
 `;
 
 export const Card = styled.div`
-    background-color: white;
+    background-color: ${({ theme }) => theme.gray.white};
     border-radius: 22px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 1px;
     
     @media screen and (max-width: 370px) {
         padding: 16px;
@@ -60,8 +63,8 @@ export const GoalHeader = styled.div`
 
 export const SettingButton = styled.button`
     font-size: 13px;
-    background-color: #E7E9FD;
-    color: #7079F6;
+    background-color: ${({ theme }) => theme.primary.pu2};
+    color: ${({ theme }) => theme.primary.pu1};
     border-radius: 12px;
     padding: 6px 10px;
     border: none;
@@ -72,38 +75,49 @@ export const GaugeWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 40px;
+    overflow: visible;
 `;
 
 export const GoalDetail = styled.div`
-    font-size: 14px;
-    color: #333;
+    font-size: 13px;
+    font-weight: bold;
+    color: ${({ theme }) => theme.gray.black};
 
     div {
-        margin-top: 30px;
+        display: flex;
+        margin-top: 14px;
+        justify-content: space-between;
 
         strong {
-            font-weight: bold;
-            color: #000;
+            font-size: 14px;
+            font-weight: 700;
         }
     }
 `;
 
 export const HoldingValue = styled.div`
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
-    margin-bottom: 16px;
+    color: ${({ theme }) => theme.gray.black};
 
-    strong {
-        font-size: 16px;
-        font-weight: bold;
+    div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+        margin-bottom: 60px;
+
+        strong {
+            font-size: 14px;
+            font-weight: 700;
+        }
     }
 `;
 
 export const DepositButton = styled.button`
-    background-color: #E7E9FD;
-    color: #7079F6;
-    padding: 12px 0px;
+    background-color: ${({ theme }) => theme.primary.pu2};
+    color: ${({ theme }) => theme.primary.pu1};
+    padding: 18px 0px;
     border: none;
     border-radius: 12px;
     font-size: 14px;

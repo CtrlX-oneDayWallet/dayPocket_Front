@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Card = styled.div`
     width: 326px;
     height: 66px;
-    background-color: #F1F1F1;
+    background-color: ${({ theme }) => theme.gray.gy1};
     border-radius: 22px;
     padding: 20px 24px;
     display: flex;
@@ -46,7 +46,7 @@ export const Label = styled.div`
     font-size: 13px;
     font-family: 'Inter';
     font-weight: 600;
-    color: #2B2B2B;
+    color: ${({ theme }) => theme.gray.gy6};
 
     @media screen and (max-width: 390px) {
         font-size: 13px;
@@ -57,13 +57,12 @@ export const Reward = styled.div`
     background-color: #CDCFF6;
     width: 42px;
     height: 18px;
-    color: #7079F6;
+    color: ${({ theme }) => theme.primary.pu1};
     font-family: 'Inter';
     text-align: center;
     white-space: nowrap;
     line-height: 1;
     justify-content: center;
-    font-size: 12px;
     font-weight: 600;
     padding: 4px 4px;
     border-radius: 4px;
@@ -76,6 +75,6 @@ export const Reward = styled.div`
     }
     
     @media screen and (max-width: 390px) {
-        font-size: 13px;
+        font-size: 11px;
     }
 `;

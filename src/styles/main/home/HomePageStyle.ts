@@ -7,7 +7,6 @@ export const Container = styled.div`
     justify-content: space-between;
     min-height: 100vh;
     padding: 20px;
-    background: transparent;
     padding-bottom: 75px;
 
     @media screen and (max-width: 390px) {
