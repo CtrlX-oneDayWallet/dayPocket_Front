@@ -6,3 +6,4 @@ export { default as DepositSuccess } from "./assets/DepositSuccess";
 export { default as DepositFail } from "./assets/DepositFail";
 export { default as TradeMain } from "./trade/TradeMain";
 export { default as TradeSuccess } from "./trade/TradeSuccess";
+export { default as TradeFail } from "./trade/TradeFail";

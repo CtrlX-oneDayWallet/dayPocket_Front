@@ -9,6 +9,7 @@ import {
   DepositSuccess,
   TradeMain,
   TradeSuccess,
+  TradeFail,
 } from "./pages";
 import { Layout } from "./components";
 
@@ -23,6 +24,7 @@ function AnimatedRoutes() {
           <Route path="/asset/1" element={<Asset1 />} />
           <Route path="/trade/main" element={<TradeMain />} />
           <Route path="/trade/success" element={<TradeSuccess />} />
+          <Route path="/trade/fail" element={<TradeFail />} />
           <Route path="/asset/accountsuccess" element={<AccountSuccess />} />
           <Route path="/asset/accountfail" element={<AccountFail />} />
           <Route path="/asset/depositsuccess" element={<DepositSuccess />} />
