@@ -1,6 +1,6 @@
 import { BrowserRouter, useLocation, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Main, Asset1 } from "./pages";
+import { Main, Asset1, Explanation, Correct } from "./pages";
 import { Layout } from "./components";
 
 function AnimatedRoutes() {
@@ -12,6 +12,8 @@ function AnimatedRoutes() {
         <Route element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/asset/1" element={<Asset1 />} />
+          <Route path="/quiz/explanation" element={<Explanation />} />\
+          <Route path="/quiz/correct" element={<Correct />} />
         </Route>
       </Routes>
     </AnimatePresence>
