@@ -21,6 +21,7 @@ export const Title = styled.p`
   font-weight: 600;
   line-height: normal;
   letter-spacing: -1px;
+  margin-top: 32px;
 `;
 
 export const BoxWrap = styled.div`
@@ -46,6 +47,7 @@ export const SelectBox = styled.div<{ $open: boolean }>`
 export const SelectHeader = styled.div`
   display: flex;
   width: 295px;
+  min-height: 46px;
   gap: 31px;
   justify-content: center;
   align-items: center;
@@ -73,7 +75,6 @@ export const DropdownWrapper = styled.div<{ $open: boolean }>`
 
 export const SelectBank = styled.p`
   width: 207px;
-  height: 21px;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -85,18 +86,20 @@ export const SelectBank = styled.p`
 
 export const BankOption = styled.p`
   width: 255px;
-  height: 21px;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 140%;
   letter-spacing: -0.14px;
   color: ${({ theme }) => theme.gray.gy6};
-  margin-left: 10px;
+  margin-left: 8px;
 `;
 
 export const DropdownItem = styled.div`
   display: flex;
+  min-height: 46px;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: ${({ theme }) => theme.gray.gy1};
