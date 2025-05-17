@@ -15,3 +15,6 @@ export { default as Account3 } from "./assets/Account3";
 export { default as QuizMain } from "./quiz/Main";
 export { default as Finish1 } from "./quiz/Finish1";
 export { default as Finish2 } from "./quiz/Finish2";
+export { default as ReceiptMain } from "./receipt/ReceiptMain";
+export { default as ReceiptSuccess } from "./receipt/ReceiptSuccess";
+export { default as ReceiptFail } from "./receipt/ReceiptFail";
