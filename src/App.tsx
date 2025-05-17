@@ -7,6 +7,9 @@ import {
   AccountSuccess,
   DepositFail,
   DepositSuccess,
+  Account1,
+  Account2,
+  Account3,
 } from "./pages";
 import { Layout } from "./components";
 
@@ -23,6 +26,9 @@ function AnimatedRoutes() {
           <Route path="/asset/accountfail" element={<AccountFail />} />
           <Route path="/asset/depositsuccess" element={<DepositSuccess />} />
           <Route path="/asset/depositfail" element={<DepositFail />} />
+          <Route path="/asset/account/1" element={<Account1 />} />
+          <Route path="/asset/account/2" element={<Account2 />} />
+          <Route path="/asset/account/3" element={<Account3 />} />
         </Route>
       </Routes>
     </AnimatePresence>
@@ -36,4 +42,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-

@@ -4,3 +4,6 @@ export { default as AccountSuccess } from "./assets/AccountSuccess";
 export { default as AccountFail } from "./assets/AccountFail";
 export { default as DepositSuccess } from "./assets/DepositSuccess";
 export { default as DepositFail } from "./assets/DepositFail";
+export { default as Account1 } from "./assets/Account1";
+export { default as Account2 } from "./assets/Account2";
+export { default as Account3 } from "./assets/Account3";

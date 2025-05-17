@@ -1,5 +1,6 @@
 export interface SetProps {
-  lable: string;
+  label: string;
   amount: string;
   setAmount: (value: string) => void;
+  onClick: () => void;
 }
