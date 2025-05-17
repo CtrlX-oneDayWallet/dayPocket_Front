@@ -16,7 +16,7 @@ import {
   Account2,
   Account3,
   Login,
-  SignUp
+  SignUp,
   Explanation,
   Correct,
   QuizMain,
