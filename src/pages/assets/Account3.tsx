@@ -1,25 +1,25 @@
 import { TopNav } from "@/components";
-import * as S from "./Asset1.styles";
+import * as S from "./Account3.styles";
 import Set from "@/components/set/Set";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SetPage() {
+export default function Account3() {
   const navigate = useNavigate();
-  const [amount, setAmount] = useState("0");
-
+  const [amount, setAmount] = useState("");
   const handleMove = () => {
-    navigate("/asset");
+    navigate("/asset/depositsuccess");
   };
+
   return (
-    <S.SetPageContainer>
+    <S.Account3Container>
       <TopNav />
       <Set
-        label="목표 금액을 설정해주세요"
+        label="얼마를 입금할까요?"
         amount={amount}
         setAmount={setAmount}
         onClick={handleMove}
       />
-    </S.SetPageContainer>
+    </S.Account3Container>
   );
 }

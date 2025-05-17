@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { Layout, Splash } from "./components";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   Main,
   Asset1,
@@ -10,8 +12,10 @@ import {
   TradeMain,
   TradeSuccess,
   TradeFail,
+  Account1,
+  Account2,
+  Account3,
 } from "./pages";
-import { Layout } from "./components";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -29,6 +33,9 @@ function AnimatedRoutes() {
           <Route path="/asset/accountfail" element={<AccountFail />} />
           <Route path="/asset/depositsuccess" element={<DepositSuccess />} />
           <Route path="/asset/depositfail" element={<DepositFail />} />
+          <Route path="/asset/account/1" element={<Account1 />} />
+          <Route path="/asset/account/2" element={<Account2 />} />
+          <Route path="/asset/account/3" element={<Account3 />} />
         </Route>
       </Routes>
     </AnimatePresence>
@@ -36,10 +43,27 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const navEntry = performance.getEntriesByType(
+      "navigation"
+    )[0] as PerformanceNavigationTiming;
+    const isFreshVisit = navEntry?.type === "navigate";
+
+    if (isFreshVisit) {
+      const timer = setTimeout(() => setShowSplash(false), 3500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSplash(false);
+    }
+  }, []);
+
+  if (showSplash) return <Splash />;
+
   return (
     <BrowserRouter>
       <AnimatedRoutes />
     </BrowserRouter>
   );
 }
-
