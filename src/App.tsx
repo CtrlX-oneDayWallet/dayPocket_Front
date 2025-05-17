@@ -15,6 +15,11 @@ import {
   Account1,
   Account2,
   Account3,
+  Explanation,
+  Correct,
+  QuizMain,
+  Finish1,
+  Finish2,
 } from "./pages";
 
 function AnimatedRoutes() {
@@ -26,6 +31,8 @@ function AnimatedRoutes() {
         <Route element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/asset/1" element={<Asset1 />} />
+          <Route path="/quiz/explanation" element={<Explanation />} />\
+          <Route path="/quiz/correct" element={<Correct />} />
           <Route path="/trade/main" element={<TradeMain />} />
           <Route path="/trade/success" element={<TradeSuccess />} />
           <Route path="/trade/fail" element={<TradeFail />} />
@@ -36,6 +43,9 @@ function AnimatedRoutes() {
           <Route path="/asset/account/1" element={<Account1 />} />
           <Route path="/asset/account/2" element={<Account2 />} />
           <Route path="/asset/account/3" element={<Account3 />} />
+          <Route path="/quiz/main" element={<QuizMain />} />
+          <Route path="/quiz/finish1" element={<Finish1 />} />
+          <Route path="/quiz/finish2" element={<Finish2 />} />
         </Route>
       </Routes>
     </AnimatePresence>
