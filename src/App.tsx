@@ -18,6 +18,8 @@ import {
   Explanation,
   Correct,
   QuizMain,
+  Finish1,
+  Finish2,
 } from "./pages";
 
 function AnimatedRoutes() {
@@ -42,6 +44,8 @@ function AnimatedRoutes() {
           <Route path="/asset/account/2" element={<Account2 />} />
           <Route path="/asset/account/3" element={<Account3 />} />
           <Route path="/quiz/main" element={<QuizMain />} />
+          <Route path="/quiz/finish1" element={<Finish1 />} />
+          <Route path="/quiz/finish2" element={<Finish2 />} />
         </Route>
       </Routes>
     </AnimatePresence>

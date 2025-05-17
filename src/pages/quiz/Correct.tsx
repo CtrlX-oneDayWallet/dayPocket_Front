@@ -21,6 +21,20 @@ const userAnswers = [
 
 export default function Correct() {
   const navigate = useNavigate();
+
+  const correctCount = questions.reduce((acc, q) => {
+    const user = userAnswers.find((a) => a.id === q.id);
+    return acc + (user?.answer === q.correct ? 1 : 0);
+  }, 0);
+
+  const handleClick = () => {
+    if (correctCount > 0) {
+      navigate("/quiz/finish1", { state: { correctCount } });
+    } else {
+      navigate("/quiz/finish2");
+    }
+  };
+
   return (
     <S.ExplanationContainer>
       <S.Title>
@@ -55,7 +69,7 @@ export default function Correct() {
           );
         })}
       </S.QuestionList>
-      <Button label="결과 확인하기" onClick={() => navigate("/quiz/finish1")} />
+      <Button label="결과 확인하기" onClick={handleClick} />
     </S.ExplanationContainer>
   );
 }
