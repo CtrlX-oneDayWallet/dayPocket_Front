@@ -1,11 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import * as S from "./ReceiptMain.styles";
+import React from "react";
 import { Button } from "@/components";
-import * as S from "./TradeMain.styles";
 import { ReactComponent as CoinIcon } from "@/assets/icons/coin.svg";
 import { ReactComponent as UploadIcon } from "@/assets/icons/upload.svg";
-import { useNavigate } from "react-router-dom";
-import React from "react";
 
-export default function TradeMain() {
+export default function ReceiptMain() {
   const navigate = useNavigate();
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -16,17 +16,16 @@ export default function TradeMain() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      navigate("/trade/success");
+      navigate("/receipt/success");
     } else {
-      navigate("/trade/fail");
+      navigate("/receipt/fail");
     }
   };
-
   return (
-    <S.TradeMainContainer>
+    <S.ReceiptMainContainer>
       <S.TextLabel>
-        중고거래 인증하고
-        <br /> 500원 받기
+        영수증 등록하고
+        <br /> 100원 받기
       </S.TextLabel>
       <CoinIcon width={240} height={240} />
       <input
@@ -40,6 +39,6 @@ export default function TradeMain() {
         icon={<UploadIcon />}
         onClick={() => handleUploadClick()}
       />
-    </S.TradeMainContainer>
+    </S.ReceiptMainContainer>
   );
 }
