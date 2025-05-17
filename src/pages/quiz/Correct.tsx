@@ -21,6 +21,9 @@ const userAnswers = [
 
 export default function Correct() {
   const navigate = useNavigate();
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
   const correctCount = questions.reduce((acc, q) => {
     const user = userAnswers.find((a) => a.id === q.id);
@@ -38,7 +41,7 @@ export default function Correct() {
   return (
     <S.ExplanationContainer>
       <S.Title>
-        9월 6일
+        {`${month}월 ${day}일`}
         <br />
         오늘의 퀴즈
       </S.Title>

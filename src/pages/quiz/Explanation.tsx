@@ -13,9 +13,13 @@ const questions = [
 
 export default function Explanation() {
   const navigate = useNavigate();
+
   const [answers, setAnswers] = useState(
     questions.map((q) => ({ id: q.id, answer: null as boolean | null }))
   );
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
 
   const handleAnswer = (id: number, value: boolean) => {
     setAnswers((prev) =>
@@ -32,7 +36,7 @@ export default function Explanation() {
   return (
     <S.ExplanationContainer>
       <S.Title>
-        9월 6일
+        {`${month}월 ${day}일`}
         <br />
         오늘의 퀴즈
       </S.Title>
