@@ -20,6 +20,9 @@ import {
   QuizMain,
   Finish1,
   Finish2,
+  ReceiptMain,
+  ReceiptSuccess,
+  ReceiptFail,
 } from "./pages";
 
 function AnimatedRoutes() {
@@ -46,6 +49,9 @@ function AnimatedRoutes() {
           <Route path="/quiz/main" element={<QuizMain />} />
           <Route path="/quiz/finish1" element={<Finish1 />} />
           <Route path="/quiz/finish2" element={<Finish2 />} />
+          <Route path="/receipt/main" element={<ReceiptMain />} />
+          <Route path="/receipt/success" element={<ReceiptSuccess />} />
+          <Route path="/receipt/fail" element={<ReceiptFail />} />
         </Route>
       </Routes>
     </AnimatePresence>
