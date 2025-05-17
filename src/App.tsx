@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { Layout, Splash } from "./components";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   Main,
   Asset1,
@@ -11,7 +13,6 @@ import {
   Account2,
   Account3,
 } from "./pages";
-import { Layout } from "./components";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -36,6 +37,24 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const navEntry = performance.getEntriesByType(
+      "navigation"
+    )[0] as PerformanceNavigationTiming;
+    const isFreshVisit = navEntry?.type === "navigate";
+
+    if (isFreshVisit) {
+      const timer = setTimeout(() => setShowSplash(false), 3500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSplash(false);
+    }
+  }, []);
+
+  if (showSplash) return <Splash />;
+
   return (
     <BrowserRouter>
       <AnimatedRoutes />
