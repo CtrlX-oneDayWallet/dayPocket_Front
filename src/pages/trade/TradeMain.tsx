@@ -17,6 +17,8 @@ export default function TradeMain() {
     const file = e.target.files?.[0];
     if (file) {
       navigate("/trade/success");
+    } else {
+      navigate("/trade/fail");
     }
   };
 
