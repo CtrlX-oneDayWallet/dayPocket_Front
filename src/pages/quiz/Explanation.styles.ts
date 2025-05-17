@@ -34,6 +34,7 @@ export const QuestionList = styled.div`
   justify-content: center;
   gap: 58px;
   margin-bottom: 24px;
+  margin-top: 10px;
 `;
 
 export const QuestionItem = styled.div`

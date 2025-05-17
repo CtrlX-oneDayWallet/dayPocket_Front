@@ -17,6 +17,7 @@ import {
   Account3,
   Explanation,
   Correct,
+  QuizMain,
 } from "./pages";
 
 function AnimatedRoutes() {
@@ -40,6 +41,7 @@ function AnimatedRoutes() {
           <Route path="/asset/account/1" element={<Account1 />} />
           <Route path="/asset/account/2" element={<Account2 />} />
           <Route path="/asset/account/3" element={<Account3 />} />
+          <Route path="/quiz/main" element={<QuizMain />} />
         </Route>
       </Routes>
     </AnimatePresence>
