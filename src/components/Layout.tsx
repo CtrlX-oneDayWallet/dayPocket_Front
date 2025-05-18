@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import BottomNav from "../components/common/BottomNav";
 
 const LayoutWrapper = styled.div`
   min-height: 100vh;
@@ -9,6 +8,8 @@ const LayoutWrapper = styled.div`
   background: var(--background, linear-gradient(180deg, #cddffc 0%, #fff 100%));
   display: flex;
   flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 `;
 
 const Layout = () => {
@@ -32,4 +33,3 @@ const Layout = () => {
 };
 
 export default Layout;
-
