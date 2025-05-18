@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${({theme}) => theme.gray.white};
+    background-color: ${({ theme }) => theme.gray.white};
     justify-content: space-between;
     border-radius: 1.375rem;
     padding: 7vw;
@@ -57,9 +57,9 @@ export const ValueText = styled.div<{ color: string }>`
 
 export const BarBackground = styled.div`
     width: 100%;
-    height: 2.7vh;
-    background-color: #F1F1F1;
-    border-radius: 1.375rem;
+    height: 20px;
+    background-color: ${({ theme }) => theme.gray.gy1};
+    border-radius: 22px;
     overflow: hidden;
 
 `;
@@ -82,7 +82,7 @@ export const CardPairSection = styled.div`
 export const CardWrapper = styled.div`
     display: flex;
     flex: 1;
-    background-color: #F1F1F1;
+    background-color: ${({ theme }) => theme.gray.gy1};
     justify-content: flex-start;
     align-items: center;
     border-radius: 1.375rem;
@@ -147,7 +147,7 @@ export const BarText = styled.div`
     white-space: nowrap;
 
     span {
-        color: #2B2B2B;
+        color: ${({ theme }) => theme.gray.gy6};
         font-size: 10px;
         font-weight: 600;
     }
@@ -171,7 +171,7 @@ export const AvgBarText = styled.div`
     text-align: center;
     align-items: center;
     font-size: 12px;
-    color: #6C7278;
+    color: ${({ theme }) => theme.gray.gy4};
     white-space: nowrap;
     
     span {

@@ -13,14 +13,14 @@ export const Card = styled.div`
 export const Text = styled.div`
     font-size: 14px;
     font-weight: 600;
-    color: white;
+    color: ${({ theme }) => theme.gray.white};
     font-family: 'Inter';
 `;
 
 export const ActionButton = styled.a`
     width: 48px;
     height: 48px;
-    background-color: white;
+    background-color: ${({ theme }) => theme.gray.white};
     border-radius: 50%;
     display: flex;
     align-items: center;

@@ -3,10 +3,23 @@ import * as S from "@/styles/main/asset/AssetPageStyle";
 import Gauge from "@/components/main/asset/Gauge";
 
 const AssetPage = () => {
+    const currentAmount = 1000;
+
     return (
         <S.Container>
             <S.CurrentAmount>
-                현재 금액<br /><strong>6,757만원</strong>
+                {currentAmount > 0 ? (
+                    <>
+                        현재 금액<br />
+                        <strong>{currentAmount.toLocaleString()}원</strong>
+                    </>
+                ) : (
+                    <>
+                        현재 금액<br />
+                        <span>다른 친구들은 벌써 5000원 받았어요<br />
+                        챌린지 더 해서 용돈 벌어봐요 💸</span>
+                    </>
+                )}
             </S.CurrentAmount>
 
             <S.Card>
@@ -15,7 +28,10 @@ const AssetPage = () => {
                     <S.SettingButton>설정하기</S.SettingButton>
                 </S.GoalHeader>
 
-                <Gauge percentage={30} />
+                <S.GaugeWrapper>
+                    <Gauge percentage={25} />
+                </S.GaugeWrapper>
+
 
                 <S.GoalDetail>
                     <div>인증 금액 <strong>0원</strong></div>

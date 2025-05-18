@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 
 export const PageWrapper = styled.div`
+  padding: 6vh 5vw;
   width: 100%;
   margin: 0 auto;
-  padding: 6vh 5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ export const PageWrapper = styled.div`
 export const Title = styled.h2`
   font-size: clamp(1.2rem, 5vw, 2.0rem);
   font-weight: 600;
-  color: #1a1a1a;
+  color: ${({ theme }) => theme.gray.gy6};
   text-align: center;
   font-family: 'Inter';
   padding: 32px 20px 0;
