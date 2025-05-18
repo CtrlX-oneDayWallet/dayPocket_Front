@@ -7,12 +7,13 @@ const Gauge = ({ percentage = 50 }: { percentage: number }) => {
     const offset = circumference * (1 - percentage / 100);
 
     return (
-        <svg width="240" height="80" viewBox="0 0 160 80">
+        <svg width="305" height="210" viewBox="0 0 175 120">
             <path
                 d="M10,80 A75,70 0 0 1 150,80"
                 stroke="#eee"
                 strokeWidth="16"
                 fill="none"
+                strokeLinecap="round"
             />
             <path
                 d="M10,80 A75,70 0 0 1 150,80"

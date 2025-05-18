@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "../../styles/main/asset/AssetPageStyle";
-import Gauge from "../../components/main/asset/Gauge";
+import * as S from "@/styles/main/asset/AssetPageStyle";
+import Gauge from "@/components/main/asset/Gauge";
 
 const AssetPage = () => {
     return (
@@ -15,9 +15,7 @@ const AssetPage = () => {
                     <S.SettingButton>설정하기</S.SettingButton>
                 </S.GoalHeader>
 
-                <S.GaugeWrapper>
-                    <Gauge percentage={30} />
-                </S.GaugeWrapper>
+                <Gauge percentage={30} />
 
                 <S.GoalDetail>
                     <div>인증 금액 <strong>0원</strong></div>
@@ -27,7 +25,9 @@ const AssetPage = () => {
 
             <S.Card>
                 <S.CardTitle>이번달 자산</S.CardTitle>
-                <S.HoldingValue>보유 <strong>5000원</strong></S.HoldingValue>
+                <S.HoldingValue>
+                    <div>보유 <strong>5000원</strong></div>
+                </S.HoldingValue>
                 <S.DepositButton>입금하기</S.DepositButton>
             </S.Card>
         </S.Container>
@@ -35,3 +35,4 @@ const AssetPage = () => {
 };
 
 export default AssetPage;
+

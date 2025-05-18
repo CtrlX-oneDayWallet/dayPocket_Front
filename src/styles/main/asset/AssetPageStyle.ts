@@ -41,10 +41,7 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     gap: 12px;
-    
-    @media screen and (max-width: 370px) {
-        padding: 16px;
-    }
+    overflow: visible;
 `;
 
 export const CardTitle = styled.div`
@@ -69,10 +66,14 @@ export const SettingButton = styled.button`
 `;
 
 export const GaugeWrapper = styled.div`
+    position: relative;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    overflow: visible;
 `;
 
 export const GoalDetail = styled.div`

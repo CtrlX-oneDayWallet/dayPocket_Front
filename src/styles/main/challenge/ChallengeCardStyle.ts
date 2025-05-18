@@ -1,26 +1,20 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-    width: 326px;
-    height: 66px;
+    width: 100%;
     background-color: #F1F1F1;
     border-radius: 22px;
-    padding: 20px 24px;
+    padding: 5vw 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 66px;
     transition: background-color 0.3s;
-
-    @media screen and (max-width: 390px) {
-        padding: 14px 16px;
-    }
 `;
 
 export const Left = styled.div`
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4vw;
 `;
 
 export const Right = styled.div`
@@ -30,8 +24,8 @@ export const Right = styled.div`
 `;
 
 export const IconWrapper = styled.div`
-    width: 26px;
-    height: 26px;
+    width: 8vw;
+    height: 8vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,10 +41,6 @@ export const Label = styled.div`
     font-family: 'Inter';
     font-weight: 600;
     color: #2B2B2B;
-
-    @media screen and (max-width: 390px) {
-        font-size: 13px;
-    }
 `;
 
 export const Reward = styled.div`

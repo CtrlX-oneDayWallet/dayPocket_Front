@@ -28,7 +28,7 @@ const TemperatureCard = () => {
                 <S.CardWrapper>
                     <S.CardTitle>오늘의 최고 온도</S.CardTitle>
                     <S.GraphWrapper>
-                        <S.BarGraph height={76.5} color="#7079F6">
+                        <S.BarGraph height={100} color="#7079F6">
                             <S.BarText color="#7079F6">
                                 <span>홍*동님</span>
                                 <strong>76.5℃</strong>

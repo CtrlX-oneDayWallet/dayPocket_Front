@@ -2,152 +2,134 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
     display: flex;
-    gap: 14px;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: ${({theme}) => theme.gray.white};
     justify-content: space-between;
-    border-radius: 22px;
-    padding: 20px;
-
-    @media screen and (max-width: 390px) {
-        padding: 16px;
-        gap: 16px;
-    }
+    border-radius: 1.375rem;
+    padding: 7vw;
+    gap: 1.3rem;
+    width: 100%;
+    height: 60vh;
 `;
 
 export const Title = styled.h3`
     font-family: 'Inter';
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: -8px;
+    font-size: 1.12rem;
+    font-weight: 600;
+    margin-bottom: -4vh;
 `;
 
 export const Description = styled.p`
     font-family: 'Inter';
-    font-weight: bold;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 0.81rem;
     color: #6C7278;
-    margin-bottom: 1px;
 `;
 
 export const MetricSection = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 5px;
-
-    @media screen and (max-width: 390px) {
-        flex-direction: column;
-        gap: 10px;
-    }
+    flex-direction: column;
+    gap: 1vh;
+    margin-top: -1vh;
 `;
 
 export const MetricRow = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2px;
+    gap: 1vh;
 `;
 
 export const LabelText = styled.div`
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 600;
     color: ${({ color }) => color};
 `;
 
 export const ValueText = styled.div<{ color: string }>`
     font-family: "Inter";
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 1.375rem;
+    font-weight: 600;
     color: ${({ color }) => color};
 `;
 
 export const BarBackground = styled.div`
     width: 100%;
-    height: 20px;
+    height: 2.7vh;
     background-color: #F1F1F1;
-    border-radius: 22px;
+    border-radius: 1.375rem;
     overflow: hidden;
-    margin-bottom: 12px;
+
 `;
 
 export const Bar = styled.div<{ width: number; color: string }>`
     width: ${({ width }) => width}%;
     height: 100%;
     background-color: ${({ color }) => color};
-    border-radius: 4px;
+    border-radius: 1.375rem;
     transition: width 0.6s ease;
 `;
 
 export const CardPairSection = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 12px;
-    margin-top: 12px;
-    
-    @media screen and (max-width: 390px) {
-        gap: 10px;
-    }
+    gap: 1vh;
+    margin-top: 1vh;
 `;
 
-// ✅ 공통 카드 레이아웃
 export const CardWrapper = styled.div`
     display: flex;
     flex: 1;
     background-color: #F1F1F1;
     justify-content: flex-start;
     align-items: center;
-    border-radius: 22px;
-    padding: 16px;
-
-    @media screen and (max-width: 390px) {
-        min-height: 200px;
-        flex-direction: column;
-        padding: 8px;
-        gap: 12px;
-    }
+    border-radius: 1.375rem;
+    height: 25vh;
+    padding: 6vw;
+    flex-direction: column;
+    gap: 7vh;
 `;
 
 export const CardTitle = styled.h3`
     font-family: "Inter";
     font-weight: 600;
     position: relative;
-    right: 5%;
-    top: 4%;
-    margin-bottom:px;
-
-    @media screen and (max-width: 390px) {
-        font-size: 14px;
-    }
+    font-size: clamp(10px, 3vw, 18px);
+    right: 12%;
+    top: 1%;
 `;
 
 export const GraphWrapper = styled.div`
+    position: relative;
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex: 1;
     flex-direction: row;
     align-items: flex-end;
-    @media screen and (max-width: 390px) {
-        gap: 38px;
-        margin-bottom: 10px;
-    }
+    gap: 6vh;
 `;
 
-// ✅ 온도 그래프 스타일
+export const BarGraphArea = styled.div`
+    width: 1%;
+    height: 10vh;
+    display: flex;
+    align-items: flex-end;
+    gap: 1vw;
+    padding: 0 1vw;
+`;
+
 export const BarGraph = styled.div<{ height: number; color: string }>`
-    flex: 1;
-    height: ${({ height }) => height}px;
+    height: ${({ height }) => `${height}%`};
     background-color: ${({ color }) => color};
     border-radius: 10px;
     position: relative;
-    padding: 10px;
+    padding: 1.5vh;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-
-    @media screen and (max-width: 390px) {
-        min-width: 25px;
-        max-height: 100px;
-        padding: 8px;
-    }
+    transition: height 0.3 ease;
 `;
 
 // ✅ 공통 바 텍스트
