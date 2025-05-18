@@ -15,6 +15,8 @@ import {
   Account1,
   Account2,
   Account3,
+  Login,
+  SignUp
   Explanation,
   Correct,
   QuizMain,
@@ -53,6 +55,8 @@ function AnimatedRoutes() {
           <Route path="/receipt/success" element={<ReceiptSuccess />} />
           <Route path="/receipt/fail" element={<ReceiptFail />} />
         </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </AnimatePresence>
   );
