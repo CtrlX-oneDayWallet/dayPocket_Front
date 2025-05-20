@@ -2,7 +2,6 @@ import React from "react";
 import LoginForm from "@/components/login/LoginForm";
 import * as S from "@/styles/login/LoginPageStyle";
 import { ReactComponent as LogoT } from "@/assets/images/logoT.svg";
-import { Link } from "react-router-dom";
 
 const LoginPage = () => {
     return (
