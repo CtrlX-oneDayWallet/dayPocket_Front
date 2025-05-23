@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import * as S from "@/styles/login/LoginPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
@@ -24,13 +25,30 @@ export const VisibleIcon = styled(VisibleSvg)`
 `;
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [keepLogin, setKeepLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const dummyPhone = "01012345678";
+        const dummyPassword = "Test@1234";
+
+        if (phone === dummyPhone && password === dummyPassword) {
+            setError("");
+            navigate("/main");
+        }
+        else {
+            setError("전화번호 또는 비밀번호가 잘못되었습니다.");
+        }
+    }
 
     return (
-        <S.Form>
+        <S.Form onSubmit={handleLogin}>
             <S.InputGroup>
                 <label>전화번호</label>
                 <S.InputWrapper>
@@ -70,7 +88,9 @@ const LoginForm = () => {
                 </label>
                 <S.LinkText href="#">비밀번호 찾기</S.LinkText>
             </S.CheckboxWrapper>
-            <S.LoginButton>로그인</S.LoginButton>
+
+            {error && <S.ErrorText>{error}</S.ErrorText>}
+            <S.LoginButton type="submit">로그인</S.LoginButton>
         </S.Form>
     )
 }
