@@ -11,7 +11,11 @@ export default function SetPage() {
 
   async function handleMove() {
     try {
-      await axiosInstance.post("/dayPocket/receipt/target", amount);
+      await axiosInstance.post("/dayPocket/receipt/target", amount, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       navigate("/asset");
     } catch (error) {
       console.error("Error occurred while setting the amount:", error);

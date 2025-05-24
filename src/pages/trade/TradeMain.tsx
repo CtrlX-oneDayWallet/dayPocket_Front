@@ -4,6 +4,7 @@ import { ReactComponent as CoinIcon } from "@/assets/icons/coin.svg";
 import { ReactComponent as UploadIcon } from "@/assets/icons/upload.svg";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import axiosInstance from "@/lib/axionsInstance";
 
 export default function TradeMain() {
   const navigate = useNavigate();
@@ -13,14 +14,25 @@ export default function TradeMain() {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    if (file) {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      await axiosInstance.post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       navigate("/trade/success");
-    } else {
+    } catch (error) {
+      console.error("Error occurred while uploading the file:", error);
       navigate("/trade/fail");
     }
-  };
+  }
 
   return (
     <S.TradeMainContainer>
