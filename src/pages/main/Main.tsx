@@ -4,6 +4,7 @@ import ChallengePage from "./ChallengePage";
 import AssetPage from "./AssetPage";
 import SettingsPage from "./SettingsPage";
 import BottomNav from "@/components/common/BottomNav";
+import UserInformationPage from "../userinfo/UserInformationPage";
 
 const Main = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -18,6 +19,8 @@ const Main = () => {
         return <AssetPage />;
       case "settings":
         return <SettingsPage />;
+      case "userinfo":
+        return <UserInformationPage />;
       default:
         return <HomePage />;
     }

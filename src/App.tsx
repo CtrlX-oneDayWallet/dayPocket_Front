@@ -26,6 +26,7 @@ import {
   ReceiptMain,
   ReceiptSuccess,
   ReceiptFail,
+  UserInfo,
 } from "./pages";
 
 function AnimatedRoutes() {
@@ -56,6 +57,7 @@ function AnimatedRoutes() {
           <Route path="/receipt/main" element={<ReceiptMain />} />
           <Route path="/receipt/success" element={<ReceiptSuccess />} />
           <Route path="/receipt/fail" element={<ReceiptFail />} />
+          <Route path="/userinfo" element={<UserInfo />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
