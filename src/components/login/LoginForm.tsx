@@ -5,6 +5,7 @@ import * as S from "@/styles/login/LoginPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
 import { ReactComponent as VisibleSvg } from "@/assets/icons/visibility.svg";
+import axios from "axios";
 
 export const UserIcon = styled(UserSvg)`
     width: 1.2rem;
@@ -32,20 +33,27 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const dummyPhone = "01012345678";
-        const dummyPassword = "Test@1234";
+        try {
+            const response = await axios.post("https://onedaypocket.shop:443/auth/login", {
+                phoneNumber: phone,
+                password: password,
+            }, {
+                withCredentials: true
+            });
 
-        if (phone === dummyPhone && password === dummyPassword) {
+            const token = response.data.token;
+            localStorage.setItem("token", token);
+
             setError("");
             navigate("/main");
         }
-        else {
+        catch (error: any) {
             setError("전화번호 또는 비밀번호가 잘못되었습니다.");
         }
-    }
+    };
 
     return (
         <S.Form onSubmit={handleLogin}>
