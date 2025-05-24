@@ -44,14 +44,15 @@ const SignUpForm = () => {
     const navigate = useNavigate();
 
     const validatePhone = (phone: string) => {
+        const cleaned = phone.replace(/-/g, "");
         const phoneRegex = /^[0-9]{10,11}$/;
-        if (!phoneRegex.test(phone)) {
+        if (!phoneRegex.test(cleaned)) {
             setPhoneError("전화번호가 올바르지 않습니다");
             setIsPhoneValid(false);
             return false;
         }
 
-        if (phone === "01012345678") {
+        if (cleaned === "01012345678") {
             setPhoneError("이미 사용 중인 전화번호입니다");
             setIsPhoneValid(false);
             return false;
@@ -76,28 +77,6 @@ const SignUpForm = () => {
         return valid;
     };
 
-    const handleRequestVerify = async () => {
-        const formattedPhone = formatPhoneNumberWithHyphen(phone);
-        try {
-            const response = await axios.post("https://onedaypocket.shop:443/auth/phoneNumber", {
-                phoneNumber: countryCode + formattedPhone
-            });
-
-            if (response.status === 200 && response.data === "Verification Code Sent") {
-                setPhoneError("인증번호가 전송되었습니다");
-                setIsPhoneValid(true);
-            }
-            else {
-                setPhoneError("알 수 없는 오류 입니다");
-                setIsPhoneValid(false);
-            }
-        }
-        catch (error) {
-            setPhoneError("인증번호 전송에 실패했습니다");
-            setIsPhoneValid(false);
-        }
-    };
-
     const formatPhoneNumberWithHyphen = (phone: string): string => {
         if (phone.length === 11) {
             return `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
@@ -110,16 +89,46 @@ const SignUpForm = () => {
         }
     }
 
+    const handleRequestVerify = async () => {
+        const formattedPhone = formatPhoneNumberWithHyphen(phone);
+        try {
+            const response = await axios.post("https://onedaypocket.shop:443/auth/phoneNumber", null, {
+                params: {
+                    phoneNumber: formattedPhone,
+                }
+            });
+
+            if (response.status === 200 || response.data === "Verification Code Sent") {
+                setPhoneError("인증번호가 전송되었습니다");
+                setIsPhoneValid(true);
+            }
+            else {
+                setPhoneError("알 수 없는 오류 입니다");
+                setIsPhoneValid(false);
+            }
+        }
+        catch (error: any) {
+            console.error("응답 오류: ", error.response?.data);
+            setPhoneError(error.response?.data?.message || "인증번호 전송에 실패했습니다");
+            setIsPhoneValid(false);
+        }
+    };
+
+
     const handleCheckCode = async () => {
+        const formattedPhone = formatPhoneNumberWithHyphen(phone);
+
+        if (isCodeValid === true) return;
+
         try {
             const response = await axios.get("https://onedaypocket.shop:443/auth/auth-code", {
                 params: {
-                    authCode: code,
-                    phoneNumber: countryCode + phone,
+                    authCode: code.trim(),
+                    phoneNumber: formattedPhone,
                 },
             });
 
-            if (response.status === 200 && response.data === "Auth Code is Verified!") {
+            if (response.status === 200 || response.data === "Auth Code is Verified!") {
                 setCodeMessage("인증 완료");
                 setIsCodeValid(true);
             }
@@ -139,13 +148,14 @@ const SignUpForm = () => {
 
         const isPhoneValidNow = validatePhone(phone);
         const isPasswordValidNow = validatePassword(password);
+        const formattedPhone = formatPhoneNumberWithHyphen(phone);
 
-        if (!isPhoneValidNow || !isPasswordValidNow) return;
+        if (!isPhoneValidNow || !isPasswordValidNow || !isCodeValid) return;
 
         try {
             await axios.post("https://onedaypocket.shop:443/auth/signup", {
                 name,
-                phoneNumber: countryCode + phone,
+                phoneNumber: formattedPhone,
                 password,
             });
 
@@ -227,7 +237,9 @@ const SignUpForm = () => {
                 </S.PasswordConfirmText>
             </S.InputGroup>
 
-            <S.SubmitButton type="submit">확인</S.SubmitButton>
+            <S.SubmitButton type="submit">
+                확인
+            </S.SubmitButton>
         </S.Form>
     )
 }
