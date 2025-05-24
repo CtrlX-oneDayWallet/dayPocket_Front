@@ -5,6 +5,7 @@ import * as S from "@/styles/login/SignUpPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
 import { ReactComponent as VisibleSvg } from "@/assets/icons/visibility.svg";
+import axios from "axios";
 
 export const UserIcon = styled(UserSvg)`
     width: 1.2rem;
@@ -61,27 +62,6 @@ const SignUpForm = () => {
         return true;
     };
 
-    const validateCode = (code: string) => {
-        const CORRECT_CODE = "123456"; //예시
-
-        if (code !== CORRECT_CODE) {
-            setCodeMessage("인증번호가 일치하지 않습니다");
-            setIsCodeValid(false);
-            return false;
-        }
-
-        const isExpired = false;
-        if (isExpired) {
-            setCodeMessage("인증번호의 유효기간이 만료되었습니다");
-            setIsCodeValid(false);
-            return false;
-        }
-
-        setCodeMessage("인증 완료");
-        setIsCodeValid(true);
-        return true;
-    };
-
     const validatePassword = (password: string) => {
         const lengthValid = password.length >= 8;
         const hasLetter = /[a-zA-Z]/.test(password);
@@ -96,51 +76,83 @@ const SignUpForm = () => {
         return valid;
     };
 
-    const handleRequestVerify = () => {
-        validatePhone(phone);
+    const handleRequestVerify = async () => {
+        const formattedPhone = formatPhoneNumberWithHyphen(phone);
+        try {
+            const response = await axios.post("https://onedaypocket.shop:443/auth/phoneNumber", {
+                phoneNumber: countryCode + formattedPhone
+            });
+
+            if (response.status === 200 && response.data === "Verification Code Sent") {
+                setPhoneError("인증번호가 전송되었습니다");
+                setIsPhoneValid(true);
+            }
+            else {
+                setPhoneError("알 수 없는 오류 입니다");
+                setIsPhoneValid(false);
+            }
+        }
+        catch (error) {
+            setPhoneError("인증번호 전송에 실패했습니다");
+            setIsPhoneValid(false);
+        }
     };
 
-    const handleCheckCode = () => {
-        validateCode(code);
+    const formatPhoneNumberWithHyphen = (phone: string): string => {
+        if (phone.length === 11) {
+            return `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
+        }
+        else if (phone.length === 10) {
+            return `${phone.slice(0, 2)}-${phone.slice(2, 6)}-${phone.slice(6, 10)}`;
+        }
+        else {
+            return phone;
+        }
+    }
+
+    const handleCheckCode = async () => {
+        try {
+            const response = await axios.get("https://onedaypocket.shop:443/auth/auth-code", {
+                params: {
+                    authCode: code,
+                    phoneNumber: countryCode + phone,
+                },
+            });
+
+            if (response.status === 200 && response.data === "Auth Code is Verified!") {
+                setCodeMessage("인증 완료");
+                setIsCodeValid(true);
+            }
+            else {
+                setCodeMessage("인증번호가 일치하지 않습니다");
+                setIsCodeValid(false);
+            }
+        }
+        catch (error) {
+            setCodeMessage("인증번호가 일치하지 않거나 유효하지 않습니다");
+            setIsCodeValid(false);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const isPhoneValid = validatePhone(phone);
-        const isCodeValidNow = validateCode(code);
+        const isPhoneValidNow = validatePhone(phone);
         const isPasswordValidNow = validatePassword(password);
 
-        if (!isPhoneValid || !isCodeValidNow || !isPasswordValidNow) return;
+        if (!isPhoneValidNow || !isPasswordValidNow) return;
 
         try {
-            //const response = await fetch("/api/signup", {
-            //    method: "POST",
-            //    headers: {
-            //        "Content-Type": "application/json"
-            //    },
-            //    body: JSON.stringify({
-            //        name,
-            //        phone: countryCode + phone,
-            //        password
-            //    })
-            //});
-
-            //if (!response.ok) {
-            //    const data = await response.json();
-            //    alert(data.message || "회원가입 실패");
-            //    return;
-            //}
-            console.log("가입 정보:", {
+            await axios.post("https://onedaypocket.shop:443/auth/signup", {
                 name,
-                phone: countryCode + phone,
-                password
+                phoneNumber: countryCode + phone,
+                password,
             });
 
             alert("회원가입 성공! 로그인 페이지로 이동합니다.");
             navigate("/login");
         }
-        catch (error) {
+        catch (error: any) {
             console.error("signup error", error);
             alert("서버 오류로 회원가입에 실패했습니다.")
         }
@@ -166,7 +178,12 @@ const SignUpForm = () => {
                                 <option key={code} value={code}>{code}</option>
                             ))}
                         </S.Select>
-                        <S.Input value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        <S.Input value={phone} onChange={(e) => {
+                            const value = e.target.value;
+                            setPhone(value);
+                            validatePhone(value);
+                            }} 
+                        />
                     </S.PhoneWrapper>
                     <S.RequestButton onClick={handleRequestVerify}>인증</S.RequestButton>
                 </S.FlexRow>
