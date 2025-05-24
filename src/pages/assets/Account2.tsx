@@ -20,7 +20,7 @@ export default function Account2() {
         "/bank/account",
         {
           bank: bank,
-          accountNumber: Number(accountNumber),
+          accountNumber: accountNumber,
           password: Number(password),
         },
         {
