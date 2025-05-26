@@ -73,10 +73,10 @@ export const OXButton = styled.button<{
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  border: ${({ selected, theme }) =>
-    selected ? `3px solid ${theme.primary.pu1}` : "none"};
-  background-color: ${({ chosen, theme }) =>
-    chosen ? theme.primary.pu2 : theme.gray.gy1};
+  border: ${({ chosen, theme }) =>
+    chosen ? `3px solid ${theme.primary.pu1}` : "none"};
+  background-color: ${({ selected, theme }) =>
+    selected ? theme.primary.pu2 : theme.gray.gy1};
 
   transition: all 0.3s ease;
   cursor: pointer;
