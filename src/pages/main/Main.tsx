@@ -18,9 +18,9 @@ const Main = () => {
       case "asset":
         return <AssetPage />;
       case "settings":
-        return <SettingsPage />;
+        return <SettingsPage setActiveTab={setActiveTab}/>;
       case "userinfo":
-        return <UserInformationPage />;
+        return <UserInformationPage setActiveTab={setActiveTab} />
       default:
         return <HomePage />;
     }

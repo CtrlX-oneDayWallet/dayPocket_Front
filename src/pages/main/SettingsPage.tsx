@@ -1,4 +1,3 @@
-import React from "react";
 import SettingsCard from "@/components/main/settings/SettingsCard";
 import * as S from "@/styles/main/settings/SettingsPageStyle";
 import { useState } from "react";
@@ -14,14 +13,14 @@ const settings = [
   { icon: <DeleteIcon />, label: "회원 탈퇴" },
 ];
 
-const SettingsPage = () => {
+const SettingsPage = ({ setActiveTab }: { setActiveTab?: (tab: string) => void}) => {
   const navigate = useNavigate();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleCardClick = (label: string) => {
     if (label === "회원 정보") {
-      navigate("/userinfo");
+      if (setActiveTab) setActiveTab("userinfo");
     }
     else if (label === "로그 아웃") {
       setShowLogoutConfirm(true);
@@ -71,9 +70,12 @@ const SettingsPage = () => {
       {showLogoutConfirm && (
         <S.Modal>
           <S.ModalContent>
-            <p>로그아웃 하시겠습니까?</p>
-            <button onClick={() => setShowLogoutConfirm(false)}>취소</button>
-            <button onClick={handleLogout}>확인</button>
+            <S.ModalTitle>로그아웃</S.ModalTitle>
+            <S.ModalText>로그아웃 하시겠습니까?</S.ModalText>
+            <S.ButtonGroup>
+              <S.CancelButton onClick={() => setShowLogoutConfirm(false)}>취소</S.CancelButton>
+              <S.ConfirmButton onClick={handleLogout}>확인</S.ConfirmButton>
+            </S.ButtonGroup>
           </S.ModalContent>
         </S.Modal>
       )}
@@ -81,9 +83,15 @@ const SettingsPage = () => {
       {showDeleteConfirm && (
         <S.Modal>
           <S.ModalContent>
-            <p>정말 탈퇴하시겠습니까</p>
-            <button onClick={() => setShowDeleteConfirm(false)}>취소</button>
-            <button onClick={handleDeleteAccount}>확인</button>
+            <S.ModalTitle>회원탈퇴</S.ModalTitle>
+            <S.ModalText>
+              회원 탈퇴 시 모든 기록이 사라져요<br />
+              그래도 탈퇴하시겠어요?
+            </S.ModalText>
+            <S.ButtonGroup>
+              <S.CancelButton onClick={() => setShowDeleteConfirm(false)}>취소</S.CancelButton>
+              <S.ConfirmButton onClick={handleDeleteAccount}>확인</S.ConfirmButton>
+            </S.ButtonGroup>
           </S.ModalContent>
         </S.Modal>
       )}
