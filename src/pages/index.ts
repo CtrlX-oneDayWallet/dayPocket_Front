@@ -20,3 +20,4 @@ export { default as Finish2 } from "./quiz/Finish2";
 export { default as ReceiptMain } from "./receipt/ReceiptMain";
 export { default as ReceiptSuccess } from "./receipt/ReceiptSuccess";
 export { default as ReceiptFail } from "./receipt/ReceiptFail";
+export { default as UserInfo } from "./userinfo/UserInformationPage"
