@@ -33,19 +33,37 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
 
+    const formatPhoneNumber = (value: string) => {
+        const digitsOnly = value.replace(/\D/g, "");
+
+        if (digitsOnly.length <= 3) return digitsOnly;
+        if (digitsOnly.length <= 7) {
+            return `${digitsOnly.slice(0, 3)}-${digitsOnly.slice(3)}`;
+        }
+        return `${digitsOnly.slice(0, 3)}-${digitsOnly.slice(3, 7)}-${digitsOnly.slice(7, 11)}`;
+    };
+
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("https://onedaypocket.shop:443/auth/login", {
+            const response = await axios.post("api/auth/login", {
                 phoneNumber: phone,
                 password: password,
             }, {
                 withCredentials: true
             });
 
-            const token = response.data.token;
-            localStorage.setItem("token", token);
+            const token = response.headers['authorization']?.split(" ")[1];
+
+            console.log("🔐 응답 전체:", response);
+            console.log("📦 Authorization 헤더:", response.headers['authorization']);
+            console.log("✅ 추출된 토큰:", token);
+            
+            if (token) {
+                localStorage.setItem("token", token);
+            }
 
             setError("");
             navigate("/main");
@@ -64,7 +82,7 @@ const LoginForm = () => {
                     <S.Input
                         type="tel"
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
                     />
                 </S.InputWrapper>
             </S.InputGroup>
