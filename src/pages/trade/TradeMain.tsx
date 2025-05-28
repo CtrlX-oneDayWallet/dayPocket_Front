@@ -20,6 +20,7 @@ export default function TradeMain() {
 
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("challenge", "TRADE");
 
     try {
       await axiosInstance.post("/upload", formData, {
