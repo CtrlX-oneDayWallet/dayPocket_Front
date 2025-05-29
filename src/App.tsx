@@ -5,6 +5,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import {
   Main,
+  MainChallenge,
+  MainAsset,
+  MainSettings,
   Asset1,
   AccountFail,
   AccountSuccess,
@@ -38,6 +41,9 @@ function AnimatedRoutes() {
         <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/main" element={<Main />} />
+          <Route path="/mainChallenge" element={<MainChallenge />} />
+          <Route path="/mainAsset" element={<MainAsset />} />
+          <Route path="/mainSettings" element={<MainSettings />} />
           <Route path="/asset/1" element={<Asset1 />} />
           <Route path="/quiz/explanation" element={<Explanation />} />\
           <Route path="/quiz/correct" element={<Correct />} />

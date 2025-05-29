@@ -12,7 +12,7 @@ const Main = () => {
   const renderPage = () => {
     switch (activeTab) {
       case "home":
-        return <HomePage />;
+        return <HomePage setActiveTab={setActiveTab} />;
       case "challenge":
         return <ChallengePage />;
       case "asset":
@@ -22,7 +22,7 @@ const Main = () => {
       case "userinfo":
         return <UserInformationPage setActiveTab={setActiveTab} />
       default:
-        return <HomePage />;
+        return <HomePage setActiveTab={setActiveTab} />;
     }
   };
 
