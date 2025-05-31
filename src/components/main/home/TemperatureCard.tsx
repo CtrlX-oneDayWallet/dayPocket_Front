@@ -21,13 +21,7 @@ const TemperatureCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //const token = localStorage.getItem("token");
-                //console.log("저장된 토큰:", localStorage.getItem("token"));
-
                 const response = await axiosInstance.get(`/dayPocket/main/home`, {
-                    //headers: {
-                    //    Authorization: `Bearer ${token}`,
-                    //},
                     withCredentials: true,
                 });
                 console.log("응답데이터:",response.data);

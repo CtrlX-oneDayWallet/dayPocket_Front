@@ -55,18 +55,22 @@ const LoginForm = () => {
                 withCredentials: true
             });
 
-            const token = response.headers['authorization']?.split(" ")[1];
+            const authHeader = response.headers['authorization'];
+            const token = authHeader && authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
 
-            console.log("🔐 응답 전체:", response);
-            console.log("📦 Authorization 헤더:", response.headers['authorization']);
-            console.log("✅ 추출된 토큰:", token);
+            console.log("응답 Authorization:", authHeader);
+            console.log("토큰:", token);
             
             if (token) {
                 localStorage.setItem("token", token);
             }
+            else {
+                setError("로그인에 실패했습니다. (토큰없음)");
+                return;
+            }
 
             setError("");
-            navigate("/main");
+            navigate("/main/Home");
         }
         catch (error: any) {
             setError("전화번호 또는 비밀번호가 잘못되었습니다.");
