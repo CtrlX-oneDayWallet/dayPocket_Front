@@ -24,6 +24,7 @@ export const Title = styled.p`
 `;
 
 export const InputWrap = styled.div`
+  margin-top: 66px;
   display: flex;
   width: 295px;
   height: 46px;

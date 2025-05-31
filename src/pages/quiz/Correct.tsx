@@ -1,34 +1,59 @@
 import { Button } from "@/components";
 import * as S from "./Explanation.styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
 
-const questions = [
-  { id: 1, text: "신용카드를 잘 쓰면\n신용점수가 오른다.", correct: true },
-  { id: 2, text: "적금은 중간에 깨도\n이자가 똑같다.", correct: false },
-  { id: 3, text: "주식 계좌는 앱으로도\n만들 수 있다.", correct: true },
-  { id: 4, text: "비상금 대출은 무조건\n직장이 있어야 된다.", correct: false },
-  { id: 5, text: "연 5% 적금이면 매달\n5% 이자가 붙는다.", correct: false },
-];
+import axiosInstance from "@/lib/axionsInstance";
 
-// 임시 예시: 사용자가 선택한 정답
-const userAnswers = [
-  { id: 1, answer: true },
-  { id: 2, answer: false },
-  { id: 3, answer: false },
-  { id: 4, answer: false },
-  { id: 5, answer: true },
-];
+interface Question {
+  id: number;
+  question: string;
+  correct: boolean;
+}
 
 export default function Correct() {
+  const location = useLocation();
+  const answers = useMemo(
+    () => location.state?.answers || [],
+    [location.state?.answers]
+  );
+  const questionRes = useMemo(
+    () => location.state?.questions || [],
+    [location.state?.questions]
+  );
+  const [questions, setQuestions] = useState<Question[]>([]);
   const navigate = useNavigate();
   const date = new Date();
   const month = date.getMonth() + 1;
   const day = date.getDate();
 
-  const correctCount = questions.reduce((acc, q) => {
-    const user = userAnswers.find((a) => a.id === q.id);
-    return acc + (user?.answer === q.correct ? 1 : 0);
-  }, 0);
+  const correctCount = questions.filter((q) => q.correct).length;
+
+  useEffect(() => {
+    async function loadQuizData() {
+      try {
+        const userAnswerRes = await axiosInstance.post(
+          "/submit/quiz",
+          answers,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const merged = questionRes.map((q: any, index: number) => ({
+          ...q,
+          correct: userAnswerRes.data[index],
+        }));
+        setQuestions(merged);
+      } catch (err) {
+        console.error("Error loading quiz data", err);
+      }
+    }
+
+    loadQuizData();
+  }, [answers, questionRes]);
 
   const handleClick = () => {
     if (correctCount > 0) {
@@ -47,23 +72,30 @@ export default function Correct() {
       </S.Title>
       <S.QuestionList>
         {questions.map((q) => {
-          const user = userAnswers.find((a) => a.id === q.id);
+          const user = answers.find((a: any) => a.id === q.id);
           const userAnswer = user?.answer;
-          const correctAnswer = q.correct;
+          const isCorrect = q.correct;
 
           return (
             <S.QuestionItem key={q.id}>
-              <S.QuestionText>{q.text}</S.QuestionText>
+              <S.QuestionText>{q.question}</S.QuestionText>
               <S.OXGroup>
                 <S.OXButton
-                  chosen={userAnswer === true}
-                  selected={correctAnswer === true}
+                  selected={userAnswer === true}
+                  chosen={
+                    (isCorrect && userAnswer === true) ||
+                    (!isCorrect && userAnswer === false)
+                  }
                 >
                   <S.TrueIcon $selected={userAnswer === true} />
                 </S.OXButton>
+
                 <S.OXButton
-                  chosen={userAnswer === false}
-                  selected={correctAnswer === false}
+                  selected={userAnswer === false}
+                  chosen={
+                    (isCorrect && userAnswer === false) ||
+                    (!isCorrect && userAnswer === true)
+                  }
                 >
                   <S.FalseIcon $selected={userAnswer === false} />
                 </S.OXButton>

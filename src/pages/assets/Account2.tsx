@@ -4,11 +4,38 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ReactComponent as EyeOffIcon } from "@/assets/icons/eye-off.svg";
 import { ReactComponent as EyeOpenIcon } from "@/assets/icons/eye-open.svg";
+import { useLocation } from "react-router-dom";
+import axiosInstance from "@/lib/axionsInstance";
 
 export default function Account2() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { bank, accountNumber } = location.state || {};
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+
+  async function handleAccount() {
+    try {
+      await axiosInstance.post(
+        "/bank/account",
+        {
+          bank: bank,
+          accountNumber: accountNumber,
+          password: Number(password),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      navigate("/asset/AccountSuccess");
+    } catch (error) {
+      console.error("Error occurred while setting the account:", error);
+      navigate("/asset/AccountFail");
+      return;
+    }
+  }
   return (
     <S.Account2Container>
       <S.Title>
@@ -54,7 +81,7 @@ export default function Account2() {
       </S.InputWrap>
       <Button
         label="확인"
-        onClick={() => navigate("/asset/AccountSuccess")}
+        onClick={() => handleAccount()}
         disabled={password === ""}
       />
     </S.Account2Container>
