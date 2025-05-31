@@ -1,5 +1,6 @@
 import * as S from "@/styles/userinfo/UserInformationPageStyle";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "@/lib/axionsInstance";
 import { ReactComponent as BackIcon } from "@/assets/icons/arrow-back.svg";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
@@ -7,7 +8,8 @@ import { ReactComponent as DownIcon } from "@/assets/icons/arrow-down.svg";
 import { ReactComponent as KoreaIcon } from "@/assets/icons/Asia.svg";
 import { ReactComponent as BankIcon } from "@/assets/icons/BankIcon.svg";
 
-const UserInformationPage = ({ setActiveTab }: { setActiveTab: (tab: string) => void }) => {
+const UserInformationPage = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState({
         name: "",
         phoneNumber: ""
@@ -38,7 +40,7 @@ const UserInformationPage = ({ setActiveTab }: { setActiveTab: (tab: string) => 
     return (
         <>
             <S.Header>
-                <S.BackButton onClick={() => setActiveTab?.("settings")}>
+                <S.BackButton onClick={() => navigate("/main/Settings")}>
                     <BackIcon />
                 </S.BackButton>
             </S.Header>

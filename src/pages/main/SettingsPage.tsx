@@ -13,14 +13,14 @@ const settings = [
   { icon: <DeleteIcon />, label: "회원 탈퇴" },
 ];
 
-const SettingsPage = ({ setActiveTab }: { setActiveTab?: (tab: string) => void}) => {
+const SettingsPage = () => {
   const navigate = useNavigate();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleCardClick = (label: string) => {
     if (label === "회원 정보") {
-      if (setActiveTab) setActiveTab("userinfo");
+      navigate("/main/Userinfo");
     }
     else if (label === "로그 아웃") {
       setShowLogoutConfirm(true);

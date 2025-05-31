@@ -5,9 +5,10 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import {
   Main,
-  MainChallenge,
-  MainAsset,
-  MainSettings,
+  HomePage,
+  ChallengePage,
+  AssetPage,
+  SettingsPage,
   Asset1,
   AccountFail,
   AccountSuccess,
@@ -40,10 +41,13 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/mainChallenge" element={<MainChallenge />} />
-          <Route path="/mainAsset" element={<MainAsset />} />
-          <Route path="/mainSettings" element={<MainSettings />} />
+          <Route path="/main" element={<Main />}>
+            <Route path="Home" element={<HomePage />} />
+            <Route path="Challenge" element={<ChallengePage />} />
+            <Route path="Asset" element={<AssetPage />} />
+            <Route path="Settings" element={<SettingsPage />} />
+            <Route path="Userinfo" element={<UserInfo />} />
+          </Route>
           <Route path="/asset/1" element={<Asset1 />} />
           <Route path="/quiz/explanation" element={<Explanation />} />\
           <Route path="/quiz/correct" element={<Correct />} />
@@ -63,7 +67,6 @@ function AnimatedRoutes() {
           <Route path="/receipt/main" element={<ReceiptMain />} />
           <Route path="/receipt/success" element={<ReceiptSuccess />} />
           <Route path="/receipt/fail" element={<ReceiptFail />} />
-          <Route path="/userinfo" element={<UserInfo setActiveTab={() => {}} />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

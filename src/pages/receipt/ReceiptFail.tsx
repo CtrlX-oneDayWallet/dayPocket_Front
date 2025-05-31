@@ -8,7 +8,7 @@ export default function ReceiptFail() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/receipt");
+      navigate("/main/Challenge");
     }, 2000);
     return () => clearTimeout(timer);
   }, [navigate]);

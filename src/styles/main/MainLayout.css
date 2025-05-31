@@ -1,0 +1,11 @@
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 75px; /* 바텀내브바 높이만큼 여백 확보 */
+}

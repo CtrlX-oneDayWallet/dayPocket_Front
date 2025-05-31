@@ -7,15 +7,15 @@ import "./BottomNav.css";
 
 interface BottomNavProps {
     activeTab: string;
-    setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+    setActiveTab: (tab: string) => void;
 }
 
 const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
     const tabs = [
-        { key: "home", icon: <HomeIcon /> },
-        { key: "challenge", icon: <ChallengeIcon /> },
-        { key: "asset", icon: <AssetIcon /> },
-        { key: "settings", icon: <SettingsIcon /> },
+        { key: "Home", icon: <HomeIcon /> },
+        { key: "Challenge", icon: <ChallengeIcon /> },
+        { key: "Asset", icon: <AssetIcon /> },
+        { key: "Settings", icon: <SettingsIcon /> },
     ];
 
     return (

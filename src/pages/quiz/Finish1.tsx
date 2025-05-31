@@ -9,7 +9,7 @@ export default function Finish1() {
   const correctCount = location.state?.correctCount;
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/quiz");
+      navigate("/main/Challenge");
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigate]);

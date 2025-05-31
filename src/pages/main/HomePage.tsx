@@ -4,12 +4,12 @@ import TemperatureCard from "../../components/main/home/TemperatureCard";
 import TodayQuiz from "../../components/main/home/TodayQuiz";
 import * as S from "../../styles/main/home/HomePageStyle";
 
-const HomePage = ({ setActiveTab }: { setActiveTab: (tab: string) => void }) => {
+const HomePage = () => {
   return (
     <S.Container>
       <DateHeader />
       <TemperatureCard />
-      <TodayQuiz setActiveTab={setActiveTab} />
+      <TodayQuiz />
     </S.Container>
   );
 };
