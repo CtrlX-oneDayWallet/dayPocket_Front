@@ -5,7 +5,7 @@ import * as S from "@/styles/login/LoginPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
 import { ReactComponent as VisibleSvg } from "@/assets/icons/visibility.svg";
-import axios from "axios";
+import axiosInstance from "@/lib/axionsInstance";
 
 export const UserIcon = styled(UserSvg)`
     width: 1.2rem;
@@ -48,7 +48,7 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("api/auth/login", {
+            const response = await axiosInstance.post("/auth/login", {
                 phoneNumber: phone,
                 password: password,
             }, {

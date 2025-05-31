@@ -1,6 +1,6 @@
 import * as S from "@/styles/userinfo/UserInformationPageStyle";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "@/lib/axionsInstance";
 import { ReactComponent as BackIcon } from "@/assets/icons/arrow-back.svg";
 import { ReactComponent as UserIcon } from "@/assets/icons/user.svg";
 import { ReactComponent as DownIcon } from "@/assets/icons/arrow-down.svg";
@@ -16,13 +16,13 @@ const UserInformationPage = ({ setActiveTab }: { setActiveTab: (tab: string) => 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem("token");
-                console.log("저장된 토큰:", localStorage.getItem("token"));
+                //const token = localStorage.getItem("token");
+                //console.log("저장된 토큰:", localStorage.getItem("token"));
     
-                const response = await axios.get(`/api/dayPocket/main/info`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                const response = await axiosInstance.get(`/dayPocket/main/info`, {
+                    //headers: {
+                    //    Authorization: `Bearer ${token}`,
+                    //},
                     withCredentials: true,
                 });
                 console.log("응답데이터:",response.data);

@@ -5,7 +5,7 @@ import * as S from "@/styles/login/SignUpPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
 import { ReactComponent as VisibleSvg } from "@/assets/icons/visibility.svg";
-import axios from "axios";
+import axiosInstance from "@/lib/axionsInstance";
 
 export const UserIcon = styled(UserSvg)`
     width: 1.2rem;
@@ -92,7 +92,7 @@ const SignUpForm = () => {
     const handleRequestVerify = async () => {
         const formattedPhone = formatPhoneNumberWithHyphen(phone);
         try {
-            const response = await axios.post("https://onedaypocket.shop:443/auth/phoneNumber", null, {
+            const response = await axiosInstance.post("/auth/phoneNumber", null, {
                 params: {
                     phoneNumber: formattedPhone,
                 }
@@ -121,7 +121,7 @@ const SignUpForm = () => {
         if (isCodeValid === true) return;
 
         try {
-            const response = await axios.get("https://onedaypocket.shop:443/auth/auth-code", {
+            const response = await axiosInstance.get("/auth/auth-code", {
                 params: {
                     authCode: code.trim(),
                     phoneNumber: formattedPhone,
@@ -153,7 +153,7 @@ const SignUpForm = () => {
         if (!isPhoneValidNow || !isPasswordValidNow || !isCodeValid) return;
 
         try {
-            await axios.post("https://onedaypocket.shop:443/auth/signup", {
+            await axiosInstance.post("/auth/signup", {
                 name,
                 phoneNumber: formattedPhone,
                 password,

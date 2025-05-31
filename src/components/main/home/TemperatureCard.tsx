@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "@/lib/axionsInstance";
 import * as S from "../../../styles/main/home/TemperatureCardStyle";
 import { useTheme } from "styled-components";
 import { ThemeType } from "@/styles/theme";
@@ -21,13 +21,13 @@ const TemperatureCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem("token");
-                console.log("저장된 토큰:", localStorage.getItem("token"));
+                //const token = localStorage.getItem("token");
+                //console.log("저장된 토큰:", localStorage.getItem("token"));
 
-                const response = await axios.get(`/api/dayPocket/main/home`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                const response = await axiosInstance.get(`/dayPocket/main/home`, {
+                    //headers: {
+                    //    Authorization: `Bearer ${token}`,
+                    //},
                     withCredentials: true,
                 });
                 console.log("응답데이터:",response.data);

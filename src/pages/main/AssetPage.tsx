@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "@/lib/axionsInstance";
 import * as S from "@/styles/main/asset/AssetPageStyle";
 import Gauge from "@/components/main/asset/Gauge";
+import { useNavigate } from "react-router-dom";
 
 const AssetPage = () => {
+    const navigate= useNavigate();
+
     const [data, setData] = useState({
         asset: 0,
         targetReceiptfiPoint: 0,
@@ -16,14 +19,14 @@ const AssetPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem("token");
-                console.log("저장된 토큰:", localStorage.getItem("token"));
+                //const token = localStorage.getItem("token");
+                //console.log("저장된 토큰:", localStorage.getItem("token"));
 
-                const response = await axios.get(`/api/dayPocket/main/asset`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                    withCredentials: true,
+                const response = await axiosInstance.get(`/dayPocket/main/asset`, {
+                    //headers: {
+                    //    Authorization: `Bearer ${token}`,
+                    //},
+                    //withCredentials: true,
                 });
                 console.log("응답데이터:",response.data);
                 setData(response.data);
@@ -55,7 +58,7 @@ const AssetPage = () => {
             <S.Card>
                 <S.GoalHeader>
                     <S.CardTitle>이번달 목표</S.CardTitle>
-                    <S.SettingButton>설정하기</S.SettingButton>
+                    <S.SettingButton onClick={() => navigate("/asset/1")}>설정하기</S.SettingButton>
                 </S.GoalHeader>
 
                 <S.GaugeWrapper>
@@ -74,7 +77,7 @@ const AssetPage = () => {
                 <S.HoldingValue>
                     <div>보유 <strong>{data.fiPoint}원</strong></div>
                 </S.HoldingValue>
-                <S.DepositButton>입금하기</S.DepositButton>
+                <S.DepositButton onClick={() => navigate("/asset/account/1")}>입금하기</S.DepositButton>
             </S.Card>
         </S.Container>
     );
