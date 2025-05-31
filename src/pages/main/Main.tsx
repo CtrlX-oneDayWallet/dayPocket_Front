@@ -3,7 +3,8 @@ import HomePage from "./HomePage";
 import ChallengePage from "./ChallengePage";
 import AssetPage from "./AssetPage";
 import SettingsPage from "./SettingsPage";
-import BottomNav from "../../components/common/BottomNav";
+import BottomNav from "@/components/common/BottomNav";
+import UserInformationPage from "../userinfo/UserInformationPage";
 
 const Main = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -17,18 +18,20 @@ const Main = () => {
       case "asset":
         return <AssetPage />;
       case "settings":
-        return <SettingsPage />;
+        return <SettingsPage setActiveTab={setActiveTab}/>;
+      case "userinfo":
+        return <UserInformationPage setActiveTab={setActiveTab} />
       default:
         return <HomePage />;
     }
   };
 
-  return (
-    <>
-      {renderPage()}
-      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
+    return (
+        <>
+            {renderPage()}
+            <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
     </>
-  );
+    );
 };
 
 export default Main;

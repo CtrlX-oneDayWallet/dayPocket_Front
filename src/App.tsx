@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Layout, Splash } from "./components";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import {
   Main,
   Asset1,
@@ -15,6 +16,8 @@ import {
   Account1,
   Account2,
   Account3,
+  Login,
+  SignUp,
   Explanation,
   Correct,
   QuizMain,
@@ -23,6 +26,7 @@ import {
   ReceiptMain,
   ReceiptSuccess,
   ReceiptFail,
+  UserInfo,
 } from "./pages";
 
 function AnimatedRoutes() {
@@ -32,7 +36,8 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route element={<Layout />}>
-          <Route path="/" element={<Main />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/main" element={<Main />} />
           <Route path="/asset/1" element={<Asset1 />} />
           <Route path="/quiz/explanation" element={<Explanation />} />\
           <Route path="/quiz/correct" element={<Correct />} />
@@ -52,7 +57,10 @@ function AnimatedRoutes() {
           <Route path="/receipt/main" element={<ReceiptMain />} />
           <Route path="/receipt/success" element={<ReceiptSuccess />} />
           <Route path="/receipt/fail" element={<ReceiptFail />} />
+          <Route path="/userinfo" element={<UserInfo setActiveTab={() => {}} />} />
         </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </AnimatePresence>
   );

@@ -1,5 +1,7 @@
 export { default as Main } from "./main/Main";
 export { default as Asset1 } from "./assets/Asset1";
+export { default as Login } from "./login/LoginPage";
+export { default as SignUp } from "./login/SignUpPage";
 export { default as Explanation } from "./quiz/Explanation";
 export { default as Correct } from "./quiz/Correct";
 export { default as AccountSuccess } from "./assets/AccountSuccess";
@@ -18,3 +20,4 @@ export { default as Finish2 } from "./quiz/Finish2";
 export { default as ReceiptMain } from "./receipt/ReceiptMain";
 export { default as ReceiptSuccess } from "./receipt/ReceiptSuccess";
 export { default as ReceiptFail } from "./receipt/ReceiptFail";
+export { default as UserInfo } from "./userinfo/UserInformationPage"

@@ -1,54 +1,45 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    padding: 6vh 5vw;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 24px;
-    min-height: 100vh;
-
-    @media screen and (max-width: 370px) {
-        padding: 16px;
-        gap: 20px;
-    }
+    gap: 3vh;
 `;
 
 export const CurrentAmount = styled.div`
-    font-size: 18px;
+    font-family: "Inter";
     font-weight: 700;
-    color: #000000;
-    margin-bottom: 20px;
-
+    color: ${({ theme }) => theme.gray.black};
+    font-size: clamp(1.1rem, 3vw, 2.5rem);
+    line-height: 1.4;
+    margin-top: 1vh;
+    gap: 3vh;
+    
     strong {
         display: block;
-        font-size: 28px;
-        margin-top: 4px;
+        font-size: clamp(1.8rem, 4vw, 3.5rem);
     }
     
-    @media screen and (max-width: 370px) {
-        font-size: 14px;
-        
-        strong {
-            font-size: 24px;
-        }
+    span {
+        display: block;
+        font-size: clamp(1.2rem, 4vw, 2.5rem);
     }
+
 `;
 
 export const Card = styled.div`
-    background-color: white;
+    background-color: ${({ theme }) => theme.gray.white};
     border-radius: 22px;
-    padding: 20px;
+    padding: 4vw 5vw;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    
-    @media screen and (max-width: 370px) {
-        padding: 16px;
-    }
+    gap: 1vh;
+    overflow: visible;
 `;
 
 export const CardTitle = styled.div`
-    font-size: 13px;
+    font-size: clamp(0.8rem, 3.5vw, 1.2rem);
     font-weight: 600;
 `;
 
@@ -59,54 +50,67 @@ export const GoalHeader = styled.div`
 `;
 
 export const SettingButton = styled.button`
-    font-size: 13px;
-    background-color: #E7E9FD;
-    color: #7079F6;
+    font-size: clamp(0.8rem, 3.0vw, 1.2rem);
+    background-color: ${({ theme }) => theme.primary.pu2};
+    color: ${({ theme }) => theme.primary.pu1};
     border-radius: 12px;
-    padding: 6px 10px;
+    padding: 1.5vw 2.5vw;
     border: none;
     font-weight: 600;
 `;
 
 export const GaugeWrapper = styled.div`
+    width: 100%;
+    padding: 2vw 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    overflow: visible;
 `;
 
 export const GoalDetail = styled.div`
-    font-size: 14px;
-    color: #333;
+    font-size: clamp(0.8rem, 3.0vw, 1.2rem);
+    font-weight: bold;
+    gap: vh;
+    color: ${({ theme }) => theme.gray.black};
 
     div {
-        margin-top: 30px;
+        display: flex;
+        margin-top: 1vh;
+        justify-content: space-between;
 
         strong {
-            font-weight: bold;
-            color: #000;
+            font-size: clamp(1.0rem, 3.0vw, 1.2rem);
+            font-weight: 700;
         }
     }
 `;
 
 export const HoldingValue = styled.div`
-    font-size: 14px;
+    font-size: clamp(0.8rem, 3.0vw, 1.2rem);
     font-weight: bold;
-    margin-bottom: 16px;
+    color: ${({ theme }) => theme.gray.black};
 
-    strong {
-        font-size: 16px;
-        font-weight: bold;
+    div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.8vh;
+
+        strong {
+            font-size: clamp(1.0rem, 3.0vw, 1.2rem);
+            font-weight: 700;
+        }
     }
 `;
 
 export const DepositButton = styled.button`
-    background-color: #E7E9FD;
-    color: #7079F6;
-    padding: 12px 0px;
+    background-color: ${({ theme }) => theme.primary.pu2};
+    color: ${({ theme }) => theme.primary.pu1};
+    width: 100%;
+    padding: 4.8vw;
     border: none;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: clamp(1.5rem, 4.0vw. 4.0rem);
     font-weight: bold;
-    width: 100%;
+    margin-top: 2vh;
 `;

@@ -1,40 +1,79 @@
 // components/main/asset/Gauge.tsx
 import React from "react";
+import { useTheme } from "styled-components";
+import { ThemeType } from "@/styles/theme";
 
 const Gauge = ({ percentage = 50 }: { percentage: number }) => {
-    const radius = 50;
+    const radius = 65;
     const circumference = Math.PI * radius;
     const offset = circumference * (1 - percentage / 100);
+    const theme = useTheme() as ThemeType;
+    const numDots = 3;
+    const centerX = 86;
+    const centerY = 80;
+    const arcRadius = 40;
+    const startAngle = -2.72;
+    const endAngle = -0.45;
+    const dotElements = [];
+    
+    for (let i = 0; i < numDots; i++) {
+        const angle = startAngle + ((endAngle - startAngle) * i) / (numDots - 1);
+        const x = centerX + arcRadius * Math.cos(angle);
+        const y = centerY + arcRadius * Math.sin(angle);
+
+        let fillColor = theme.primary.pu2;
+        if (percentage >= 75 && i <= 2) fillColor = theme.primary.pu1;
+        else if (percentage >= 50 && i <= 1) fillColor = theme.primary.pu1;
+        else if (percentage >= 25 && i <= 0) fillColor = theme.primary.pu1;
+
+        dotElements.push(
+            <circle key={i} cx={x} cy={y} r="4" fill={fillColor} />
+        );
+    }
 
     return (
-        <svg width="240" height="80" viewBox="0 0 160 80">
+        <svg 
+            viewBox="0 0 175 120" 
+            preserveAspectRatio="xMidYMid meet" 
+            style={{ width: '100%', height: 'auto' }}
+        >
             <path
-                d="M10,80 A75,70 0 0 1 150,80"
-                stroke="#eee"
-                strokeWidth="16"
+                d="M12,80 A75,70 0 0 1 160,80"
+                stroke={theme.gray.gy1}
+                strokeWidth="18"
                 fill="none"
+                strokeLinecap = "round"
             />
             <path
-                d="M10,80 A75,70 0 0 1 150,80"
-                stroke="#7079F6"
-                strokeWidth="16"
+                d="M12,80 A75,70 0 0 1 160,80"
+                stroke= {theme.primary.pu1}
+                strokeWidth="18"
                 fill="none"
                 strokeDasharray={circumference}
                 strokeDashoffset={offset}
                 strokeLinecap="round"
                 style={{ transition: "stroke-dashoffset 0.3s ease" }}
             />
-            <text
-                x="50%"
-                y="65%"
-                dominantBaseline="middle"
-                textAnchor="middle"
-                fontSize="18"
-                fontWeight="bold"
-                fill="#7079F6"
-            >
-                {percentage}%
-            </text>
+
+            {dotElements}
+
+            <g transform="translate(86, 74)">
+                <circle 
+                    r="22" 
+                    fill={theme.gray.gy1} 
+                    strokeWidth="2"
+                />
+                <text
+                    x="0"
+                    y="4"
+                    fontSize="12"
+                    textAnchor="middle"
+                    fontWeight="bold"
+                    fill={theme.gray.black}
+                >
+                    {percentage}%
+                </text>
+            </g>
         </svg>
     );
 };

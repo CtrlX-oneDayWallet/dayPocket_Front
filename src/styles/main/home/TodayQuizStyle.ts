@@ -1,29 +1,28 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 20px;
-    background-color: #736ff1;
-    border-radius: 22px;
-    margin-bottom: 24px;
+    border-radius: 1.4rem;
+    padding: 3vw 5vw;
+    background-color: ${({theme}) => theme.primary.pu1};
 `;
 
 export const Text = styled.div`
     font-size: 14px;
     font-weight: 600;
-    color: white;
+    color: ${({ theme }) => theme.gray.white};
     font-family: 'Inter';
 `;
 
-export const ActionButton = styled.div`
+export const ActionButton = styled.a`
     width: 48px;
     height: 48px;
-    background-color: white;
+    background-color: ${({ theme }) => theme.gray.white};
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 `;

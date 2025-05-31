@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "@/components";
 import { ReactComponent as CoinIcon } from "@/assets/icons/coin.svg";
 import { ReactComponent as UploadIcon } from "@/assets/icons/upload.svg";
+import axiosInstance from "@/lib/axionsInstance";
 
 export default function ReceiptMain() {
   const navigate = useNavigate();
@@ -13,14 +14,29 @@ export default function ReceiptMain() {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    if (file) {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append(
+      "challenge",
+      new Blob(["RECEIPT"], { type: "application/json" })
+    );
+
+    try {
+      await axiosInstance.post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       navigate("/receipt/success");
-    } else {
+    } catch (error) {
+      console.error("Error occurred while uploading the file:", error);
       navigate("/receipt/fail");
     }
-  };
+  }
   return (
     <S.ReceiptMainContainer>
       <S.TextLabel>

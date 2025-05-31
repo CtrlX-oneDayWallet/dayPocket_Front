@@ -2,56 +2,41 @@ import styled from "styled-components";
 
 
 export const PageWrapper = styled.div`
-  height: 100vh;
+  padding: 6vh 5vw;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 37px;
-  
-  @media screen and (max-width: 390px) {
-    padding: 16px;
-  }
+  gap: 5vh;
 `;
 
 export const Title = styled.h2`
-  font-size: 22px;
+  font-size: clamp(1.2rem, 5vw, 2.0rem);
   font-weight: 600;
-  color: #1a1a1a;
+  color: ${({ theme }) => theme.gray.gy6};
   text-align: center;
   font-family: 'Inter';
   padding: 32px 20px 0;
   line-height: 1.5;
-  margin-top: 40px;
-
-  @media screen and (max-width: 390px) {
-    font-size: 22px;
-  }
 `;
 
 export const CardBox = styled.div`
-    width: 100vw;
+    width: 111%;
     background-color: #ffffff;
     border-radius: 22px;
-    padding: 20px;
-    margin-top: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 4vh 4vh;
     display: flex;
     flex-direction: column;
-    min-height: 360px;
-    gap: 22px;
+    gap: 3vh;
 `;
 
 export const CoinWrapper = styled.div`
-    width: 179px;
-    height: 187px;
+    display: flex;
+    justify-content: center;
     margin-top: 5px;
     & > svg {
-      width: 179px;
-      height: 187px;
-
-      @media screen and (max-width: 390px) {
-        width: 179px;
-        height: 187px;
-      }
+      width: 50vw;
+      height: auto;
     }
 `;
