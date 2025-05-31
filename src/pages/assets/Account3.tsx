@@ -11,11 +11,15 @@ export default function Account3() {
 
   async function handleMove() {
     try {
-      await axiosInstance.post("/point/withdraw", Number(amount), {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      await axiosInstance.post(
+        "/point/withdraw",
+        { point: Number(amount) },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       navigate("/asset/depositsuccess");
     } catch (error) {
       console.error("Error occurred while setting the amount:", error);

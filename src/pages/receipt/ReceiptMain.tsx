@@ -20,7 +20,10 @@ export default function ReceiptMain() {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("challenge", "RECEIPT");
+    formData.append(
+      "challenge",
+      new Blob(["RECEIPT"], { type: "application/json" })
+    );
 
     try {
       await axiosInstance.post("/upload", formData, {

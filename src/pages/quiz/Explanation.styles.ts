@@ -53,6 +53,7 @@ export const QuestionText = styled.p`
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.9px;
+  padding-right: 10px;
 `;
 
 export const OXGroup = styled.div`
