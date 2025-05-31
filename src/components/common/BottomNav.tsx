@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as HomeIcon } from "../../assets/icons/Home.svg";
 import { ReactComponent as ChallengeIcon } from "../../assets/icons/Challenge.svg";
 import { ReactComponent as AssetIcon } from "../../assets/icons/Asset.svg";

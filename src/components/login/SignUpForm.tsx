@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import * as S from "@/styles/login/SignUpPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
@@ -36,22 +37,27 @@ const SignUpForm = () => {
     const [countryCode, setCountryCode] = useState("+82");
     const [phoneError, setPhoneError] = useState("");
     const [codeMessage, setCodeMessage] = useState("");
+    const [isPhoneValid, setIsPhoneValid] = useState<boolean | null>(null);
     const [isCodeValid, setIsCodeValid] = useState<boolean | null>(null);
     const [isPasswordValid, setIsPasswordValid] = useState<boolean | null>(null);
+    const navigate = useNavigate();
 
     const validatePhone = (phone: string) => {
-        const phoneRegex = /^[0-9]{10, 11}$/;
+        const phoneRegex = /^[0-9]{10,11}$/;
         if (!phoneRegex.test(phone)) {
             setPhoneError("전화번호가 올바르지 않습니다");
+            setIsPhoneValid(false);
             return false;
         }
 
         if (phone === "01012345678") {
             setPhoneError("이미 사용 중인 전화번호입니다");
+            setIsPhoneValid(false);
             return false;
         }
 
-        setPhoneError("");
+        setPhoneError("가입 가능한 전화번호입니다");
+        setIsPhoneValid(true);
         return true;
     };
 
@@ -98,8 +104,50 @@ const SignUpForm = () => {
         validateCode(code);
     };
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const isPhoneValid = validatePhone(phone);
+        const isCodeValidNow = validateCode(code);
+        const isPasswordValidNow = validatePassword(password);
+
+        if (!isPhoneValid || !isCodeValidNow || !isPasswordValidNow) return;
+
+        try {
+            //const response = await fetch("/api/signup", {
+            //    method: "POST",
+            //    headers: {
+            //        "Content-Type": "application/json"
+            //    },
+            //    body: JSON.stringify({
+            //        name,
+            //        phone: countryCode + phone,
+            //        password
+            //    })
+            //});
+
+            //if (!response.ok) {
+            //    const data = await response.json();
+            //    alert(data.message || "회원가입 실패");
+            //    return;
+            //}
+            console.log("가입 정보:", {
+                name,
+                phone: countryCode + phone,
+                password
+            });
+
+            alert("회원가입 성공! 로그인 페이지로 이동합니다.");
+            navigate("/login");
+        }
+        catch (error) {
+            console.error("signup error", error);
+            alert("서버 오류로 회원가입에 실패했습니다.")
+        }
+    };
+
     return (
-        <S.Form>
+        <S.Form onSubmit={handleSubmit}>
             <S.InputGroup>
                 <label>이름</label>
                 <S.InputWrapper>
@@ -122,7 +170,9 @@ const SignUpForm = () => {
                     </S.PhoneWrapper>
                     <S.RequestButton onClick={handleRequestVerify}>인증</S.RequestButton>
                 </S.FlexRow>
-                {phoneError && <S.ErrorText>{phoneError}</S.ErrorText>}
+                <S.CodeConfirmText $valid={isPhoneValid}>
+                    {phoneError}
+                </S.CodeConfirmText>
 
 
                 <label>인증번호</label>
@@ -160,7 +210,7 @@ const SignUpForm = () => {
                 </S.PasswordConfirmText>
             </S.InputGroup>
 
-            <S.SubmitButton>확인</S.SubmitButton>
+            <S.SubmitButton type="submit">확인</S.SubmitButton>
         </S.Form>
     )
 }

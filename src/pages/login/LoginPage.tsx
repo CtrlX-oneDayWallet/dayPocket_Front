@@ -4,6 +4,7 @@ import * as S from "@/styles/login/LoginPageStyle";
 import { ReactComponent as LogoT } from "@/assets/images/logoT.svg";
 
 const LoginPage = () => {
+
     return (
         <S.Container>
             <S.Logo><LogoT /></S.Logo>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import * as S from "@/styles/login/LoginPageStyle";
 import { ReactComponent as UserSvg } from "@/assets/icons/user.svg";
 import { ReactComponent as EyeOffSvg } from "@/assets/icons/eye-off.svg";
 import { ReactComponent as VisibleSvg } from "@/assets/icons/visibility.svg";
+import axios from "axios";
 
 export const UserIcon = styled(UserSvg)`
     width: 1.2rem;
@@ -24,13 +26,37 @@ export const VisibleIcon = styled(VisibleSvg)`
 `;
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [keepLogin, setKeepLogin] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post("https://onedaypocket.shop:443/auth/login", {
+                phoneNumber: phone,
+                password: password,
+            }, {
+                withCredentials: true
+            });
+
+            const token = response.data.token;
+            localStorage.setItem("token", token);
+
+            setError("");
+            navigate("/main");
+        }
+        catch (error: any) {
+            setError("전화번호 또는 비밀번호가 잘못되었습니다.");
+        }
+    };
 
     return (
-        <S.Form>
+        <S.Form onSubmit={handleLogin}>
             <S.InputGroup>
                 <label>전화번호</label>
                 <S.InputWrapper>
@@ -70,7 +96,9 @@ const LoginForm = () => {
                 </label>
                 <S.LinkText href="#">비밀번호 찾기</S.LinkText>
             </S.CheckboxWrapper>
-            <S.LoginButton>로그인</S.LoginButton>
+
+            {error && <S.ErrorText>{error}</S.ErrorText>}
+            <S.LoginButton type="submit">로그인</S.LoginButton>
         </S.Form>
     )
 }
