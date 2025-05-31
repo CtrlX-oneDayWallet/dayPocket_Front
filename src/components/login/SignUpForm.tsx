@@ -163,8 +163,17 @@ const SignUpForm = () => {
             navigate("/login");
         }
         catch (error: any) {
-            console.error("signup error", error);
-            alert("서버 오류로 회원가입에 실패했습니다.")
+            if (error.response) {
+                // 서버가 응답을 준 경우 (500, 400, 403 등)
+                console.error("🛠️ 서버 응답 에러:", error.response.status, error.response.data);
+            } else if (error.request) {
+                // 서버에 요청은 보냈으나 응답을 못 받은 경우
+                console.error("📡 응답 없음. 요청 객체:", error.request);
+            } else {
+                // 요청 자체가 잘못된 경우 (코드 오류 등)
+                console.error("❗ 요청 생성 중 오류:", error.message);
+            }
+        alert("서버 오류로 회원가입에 실패했습니다.");
         }
     };
 
