@@ -4,7 +4,7 @@ import { useTheme } from "styled-components";
 import { ThemeType } from "@/styles/theme";
 
 const Gauge = ({ percentage = 50 }: { percentage: number }) => {
-    const radius = 65;
+    const radius = 66;
     const circumference = Math.PI * radius;
     const offset = circumference * (1 - percentage / 100);
     const theme = useTheme() as ThemeType;

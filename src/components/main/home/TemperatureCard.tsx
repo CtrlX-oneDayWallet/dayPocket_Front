@@ -10,12 +10,16 @@ const TemperatureCard = () => {
     const [data, setData] = useState({
         fiScore: 0,
         fiPoint: 0,
-        dayMaxfiScore: 0,
-        dayAvgfiScore: 0,
-        dayMaxfiScoreName: "",
-        maxFiPoint: 0,
-        monthAvgfiPoint: 0,
-        maxFiPointName: "",
+        maxFiScoreDto: {
+            dayMaxFiScore: 0,
+            dayAvgFiScore: 0,
+            dayMaxFiScoreName: "",
+        },
+        maxFiPointDto: {
+            maxFiPoint: 0,
+            monthAvgFiPoint: 0,
+            maxFiPointName: "",
+        }
     });
 
     useEffect(() => {
@@ -33,6 +37,12 @@ const TemperatureCard = () => {
 
         fetchData();
     }, []);
+
+    const dayMaxFiScorePercent = (data.maxFiScoreDto.dayMaxFiScore)
+    const dayAvgFiScorePercent = (data.maxFiScoreDto.dayAvgFiScore)
+    const maxFiPointPercent = (data.maxFiPointDto.maxFiPoint/ 10)
+    const monthAvgFiPointPercent = (data.maxFiPointDto.monthAvgFiPoint/ 10)
+
 
     return (
         <S.CardContainer>
@@ -60,16 +70,16 @@ const TemperatureCard = () => {
                 <S.CardWrapper>
                     <S.CardTitle>오늘의 최고 온도</S.CardTitle>
                     <S.GraphWrapper>
-                        <S.BarGraph height={data.dayMaxfiScore} color={theme.primary.pu1}>
+                        <S.BarGraph height={dayMaxFiScorePercent} color={theme.primary.pu1}>
                             <S.BarText color={theme.primary.pu1}>
-                                <span>{data.dayMaxfiScoreName}님</span>
-                                <strong>{data.dayMaxfiScore}℃</strong>
+                                <span>{data.maxFiScoreDto.dayMaxFiScoreName}님</span>
+                                <strong>{data.maxFiScoreDto.dayMaxFiScore}℃</strong>
                             </S.BarText>
                         </S.BarGraph>
-                        <S.BarGraph height={data.dayAvgfiScore} color={theme.gray.gy3}>
+                        <S.BarGraph height={dayAvgFiScorePercent} color={theme.gray.gy3}>
                             <S.AvgBarText>
                                 <span>평균</span>
-                                <strong>{data.dayAvgfiScore}℃</strong>
+                                <strong>{data.maxFiScoreDto.dayAvgFiScore}℃</strong>
                             </S.AvgBarText>
                         </S.BarGraph>
                     </S.GraphWrapper>
@@ -78,16 +88,16 @@ const TemperatureCard = () => {
                 <S.CardWrapper>
                     <S.CardTitle>이번달 최고 금액</S.CardTitle>
                     <S.GraphWrapper>
-                        <S.BarGraph height={data.maxFiPoint} color={theme.primary.bl1}>
+                        <S.BarGraph height={maxFiPointPercent} color={theme.primary.bl1}>
                             <S.BarText color={theme.primary.bl1}>
-                                <span>{data.maxFiPointName}님</span>
-                                <strong>{data.maxFiPoint}원</strong>
+                                <span>{data.maxFiPointDto.maxFiPointName}님</span>
+                                <strong>{data.maxFiPointDto.maxFiPoint}원</strong>
                             </S.BarText>
                         </S.BarGraph>
-                        <S.BarGraph height={data.monthAvgfiPoint} color={theme.gray.gy3}>
+                        <S.BarGraph height={monthAvgFiPointPercent} color={theme.gray.gy3}>
                             <S.AvgBarText>
                                 <span>평균</span>
-                                <strong>{data.monthAvgfiPoint}원</strong>
+                                <strong>{data.maxFiPointDto.monthAvgFiPoint}원</strong>
                             </S.AvgBarText>
                         </S.BarGraph>
                     </S.GraphWrapper>

@@ -9,8 +9,8 @@ const AssetPage = () => {
 
     const [data, setData] = useState({
         asset: 0,
-        targetReceiptfiPoint: 0,
-        receiptfiPoint: 0,
+        targetReceiptFiPoint: 0,
+        receiptFiPoint: 0,
         processPoint: 0,
         leftPoint: 0,
         fiPoint: 0
@@ -19,14 +19,8 @@ const AssetPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //const token = localStorage.getItem("token");
-                //console.log("저장된 토큰:", localStorage.getItem("token"));
-
                 const response = await axiosInstance.get(`/dayPocket/main/asset`, {
-                    //headers: {
-                    //    Authorization: `Bearer ${token}`,
-                    //},
-                    //withCredentials: true,
+                    withCredentials: true,
                 });
                 console.log("응답데이터:",response.data);
                 setData(response.data);
@@ -67,7 +61,7 @@ const AssetPage = () => {
 
 
                 <S.GoalDetail>
-                    <div>인증 금액 <strong>{data.receiptfiPoint}원</strong></div>
+                    <div>인증 금액 <strong>{data.receiptFiPoint}원</strong></div>
                     <div>목표까지 남은 금액 <strong>{data.leftPoint}원</strong></div>
                 </S.GoalDetail>
             </S.Card>
