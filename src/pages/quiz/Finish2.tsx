@@ -7,7 +7,7 @@ export default function Finish2() {
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/quiz");
+      navigate("/main/Challenge");
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigate]);

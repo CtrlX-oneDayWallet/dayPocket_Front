@@ -8,7 +8,7 @@ export default function TradeSuccess() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/trade");
+      navigate("/main/Challenge");
     }, 2000);
     return () => clearTimeout(timer);
   }, [navigate]);

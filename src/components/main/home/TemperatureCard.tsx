@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "@/lib/axionsInstance";
 import * as S from "../../../styles/main/home/TemperatureCardStyle";
 import { useTheme } from "styled-components";
 import { ThemeType } from "@/styles/theme";
 
 const TemperatureCard = () => {
     const theme = useTheme() as ThemeType;
+
+    const [data, setData] = useState({
+        fiScore: 0,
+        fiPoint: 0,
+        maxFiScoreDto: {
+            dayMaxFiScore: 0,
+            dayAvgFiScore: 0,
+            dayMaxFiScoreName: "",
+        },
+        maxFiPointDto: {
+            maxFiPoint: 0,
+            monthAvgFiPoint: 0,
+            maxFiPointName: "",
+        }
+    });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axiosInstance.get(`/dayPocket/main/home`, {
+                    withCredentials: true,
+                });
+                console.log("응답데이터:",response.data);
+                setData(response.data);
+            } catch (err: any) {
+                console.error("요청 실패", err.response?.status, err.response?.data || err.message);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const dayMaxFiScorePercent = (data.maxFiScoreDto.dayMaxFiScore)
+    const dayAvgFiScorePercent = (data.maxFiScoreDto.dayAvgFiScore)
+    const maxFiPointPercent = (data.maxFiPointDto.maxFiPoint/ 10)
+    const monthAvgFiPointPercent = (data.maxFiPointDto.monthAvgFiPoint/ 10)
+
 
     return (
         <S.CardContainer>
@@ -13,18 +51,18 @@ const TemperatureCard = () => {
             <S.MetricSection>
                 <S.MetricRow>
                     <S.LabelText color={theme.primary.pu1}>나의 온도</S.LabelText>
-                    <S.ValueText color={theme.primary.pu1}>76.5°C</S.ValueText>
+                    <S.ValueText color={theme.primary.pu1}>{data.fiScore}°C</S.ValueText>
                 </S.MetricRow>
                 <S.BarBackground>
-                    <S.Bar color={theme.primary.pu2} width={76.5} />
+                    <S.Bar color={theme.primary.pu2} width={data.fiScore} />
                 </S.BarBackground>
 
                 <S.MetricRow>
                     <S.LabelText color={theme.primary.bl1}>나의 자산</S.LabelText>
-                    <S.ValueText color={theme.primary.bl1}>5000원</S.ValueText>
+                    <S.ValueText color={theme.primary.bl1}>{data.fiPoint}원</S.ValueText>
                 </S.MetricRow>
                 <S.BarBackground>
-                    <S.Bar color="#B4E2FF" width={50} />
+                    <S.Bar color="#B4E2FF" width={data.fiPoint} />
                 </S.BarBackground>
             </S.MetricSection>
 
@@ -32,16 +70,16 @@ const TemperatureCard = () => {
                 <S.CardWrapper>
                     <S.CardTitle>오늘의 최고 온도</S.CardTitle>
                     <S.GraphWrapper>
-                        <S.BarGraph height={76.5} color={theme.primary.pu1}>
+                        <S.BarGraph height={dayMaxFiScorePercent} color={theme.primary.pu1}>
                             <S.BarText color={theme.primary.pu1}>
-                                <span>홍*동님</span>
-                                <strong>76.5℃</strong>
+                                <span>{data.maxFiScoreDto.dayMaxFiScoreName}님</span>
+                                <strong>{data.maxFiScoreDto.dayMaxFiScore}℃</strong>
                             </S.BarText>
                         </S.BarGraph>
-                        <S.BarGraph height={40} color={theme.gray.gy3}>
+                        <S.BarGraph height={dayAvgFiScorePercent} color={theme.gray.gy3}>
                             <S.AvgBarText>
                                 <span>평균</span>
-                                <strong>40℃</strong>
+                                <strong>{data.maxFiScoreDto.dayAvgFiScore}℃</strong>
                             </S.AvgBarText>
                         </S.BarGraph>
                     </S.GraphWrapper>
@@ -50,16 +88,16 @@ const TemperatureCard = () => {
                 <S.CardWrapper>
                     <S.CardTitle>이번달 최고 금액</S.CardTitle>
                     <S.GraphWrapper>
-                        <S.BarGraph height={50} color={theme.primary.bl1}>
+                        <S.BarGraph height={maxFiPointPercent} color={theme.primary.bl1}>
                             <S.BarText color={theme.primary.bl1}>
-                                <span>홍*동님</span>
-                                <strong>5000원</strong>
+                                <span>{data.maxFiPointDto.maxFiPointName}님</span>
+                                <strong>{data.maxFiPointDto.maxFiPoint}원</strong>
                             </S.BarText>
                         </S.BarGraph>
-                        <S.BarGraph height={20} color={theme.gray.gy3}>
+                        <S.BarGraph height={monthAvgFiPointPercent} color={theme.gray.gy3}>
                             <S.AvgBarText>
                                 <span>평균</span>
-                                <strong>2000원</strong>
+                                <strong>{data.maxFiPointDto.monthAvgFiPoint}원</strong>
                             </S.AvgBarText>
                         </S.BarGraph>
                     </S.GraphWrapper>

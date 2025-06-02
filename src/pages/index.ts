@@ -1,4 +1,8 @@
 export { default as Main } from "./main/Main";
+export { default as HomePage } from "./main/HomePage";
+export { default as ChallengePage } from "./main/ChallengePage";
+export { default as AssetPage } from "./main/AssetPage";
+export { default as SettingsPage } from "./main/SettingsPage";
 export { default as Asset1 } from "./assets/Asset1";
 export { default as Login } from "./login/LoginPage";
 export { default as SignUp } from "./login/SignUpPage";

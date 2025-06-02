@@ -7,7 +7,7 @@ export default function AccountFail() {
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/asset");
+      navigate("/main/Asset");
     }, 3000);
 
     return () => clearTimeout(timer);

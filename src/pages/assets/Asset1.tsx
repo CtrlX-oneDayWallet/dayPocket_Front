@@ -16,7 +16,7 @@ export default function SetPage() {
           "Content-Type": "application/json",
         },
       });
-      navigate("/asset");
+      navigate("/main/Asset");
     } catch (error) {
       console.error("Error occurred while setting the amount:", error);
       alert("금액 설정에 실패했습니다. 다시 시도해주세요.");

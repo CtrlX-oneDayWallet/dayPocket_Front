@@ -8,7 +8,7 @@ export default function DepositSuccess() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("/asset");
+      navigate("/main/Asset");
     }, 3000);
 
     return () => clearTimeout(timer);

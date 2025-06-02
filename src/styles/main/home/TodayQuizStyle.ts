@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
+export const Card = styled.a`
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -17,7 +17,7 @@ export const Text = styled.div`
     font-family: 'Inter';
 `;
 
-export const ActionButton = styled.a`
+export const ActionButton = styled.div`
     width: 48px;
     height: 48px;
     background-color: ${({ theme }) => theme.gray.white};

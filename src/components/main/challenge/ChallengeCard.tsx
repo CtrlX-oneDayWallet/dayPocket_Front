@@ -6,11 +6,12 @@ interface Props {
     icon: ReactElement;
     label: string;
     reward: number;
+    onClick? : () => void;
 }
 
-const ChallengeCard = ({ icon, label, reward }: Props) => {
+const ChallengeCard = ({ icon, label, reward, onClick }: Props) => {
     return (
-        <S.Card>
+        <S.Card onClick={onClick}>
             <S.Left>
                 <S.IconWrapper>{icon}</S.IconWrapper>
                 <S.Label>{label}</S.Label>
