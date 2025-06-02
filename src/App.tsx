@@ -40,7 +40,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route element={<Layout />}>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/main" element={<Main />}>
             <Route path="Home" element={<HomePage />} />
             <Route path="Challenge" element={<ChallengePage />} />
@@ -75,8 +75,9 @@ function AnimatedRoutes() {
   );
 }
 
-export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
+function AppContent() {
+  const location = useLocation();
+  const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
     const navEntry = performance.getEntriesByType(
@@ -84,19 +85,23 @@ export default function App() {
     )[0] as PerformanceNavigationTiming;
     const isFreshVisit = navEntry?.type === "navigate";
 
-    if (isFreshVisit) {
+    if (location.pathname === "/login" && isFreshVisit) {
+      setShowSplash(true);
       const timer = setTimeout(() => setShowSplash(false), 3500);
       return () => clearTimeout(timer);
     } else {
       setShowSplash(false);
     }
-  }, []);
+  }, [location.pathname]);
 
   if (showSplash) return <Splash />;
+  return <AnimatedRoutes />;
+}
 
+export default function App() {
   return (
     <BrowserRouter>
-      <AnimatedRoutes />
+      <AppContent />
     </BrowserRouter>
   );
 }
