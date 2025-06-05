@@ -12,19 +12,14 @@ const UserInformationPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({
         name: "",
-        phoneNumber: ""
+        phoneNumber: "",
+        bankAccountList: []
     });
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //const token = localStorage.getItem("token");
-                //console.log("저장된 토큰:", localStorage.getItem("token"));
-    
                 const response = await axiosInstance.get(`/dayPocket/main/info`, {
-                    //headers: {
-                    //    Authorization: `Bearer ${token}`,
-                    //},
                     withCredentials: true,
                 });
                 console.log("응답데이터:",response.data);
@@ -62,9 +57,8 @@ const UserInformationPage = () => {
 
                     <S.Label>저장된 계좌정보</S.Label>
                     <S.InfoBox>
-                        <BankIcon />
                         <DownIcon />
-                        <S.InfoText>110-****-123456</S.InfoText>
+                        <S.InfoText>{data.bankAccountList}</S.InfoText>
                     </S.InfoBox>
                 </S.Card>
             </S.Container>
